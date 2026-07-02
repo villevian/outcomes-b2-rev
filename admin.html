@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outcomes B2 — Admin</title>
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .students-table {
+    width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px;
+  }
+  .students-table th, .students-table td {
+    padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line);
+  }
+  .students-table th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .students-table tr:last-child td { border-bottom: none; }
+  .del-btn { background: none; border: none; color: #b73333; cursor: pointer; font-size: 13px; }
+  .add-row { display: grid; grid-template-columns: 1fr 1fr 100px 120px; gap: 10px; align-items: end; }
+  .add-row input, .add-row select { margin: 0 !important; }
+</style>
+</head>
+<body>
+<div class="wrap" style="max-width: 900px;">
+
+<div class="session-bar">
+  <div class="who">
+    <span class="pill teacher">Teacher</span>
+    <span>Admin panel</span>
+  </div>
+  <div>
+    <a href="index.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">← Back to hub</a>
+    <button onclick="OutcomesSession.clear(); window.location='login.html';">Sign out</button>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Admin</div>
+  <h1>Students</h1>
+  <p class="subtitle">Add, view and remove student nicknames. Each nickname is the student's login handle.</p>
+</header>
+
+<section>
+  <h2>Add a student</h2>
+  <div class="card">
+    <div class="add-row">
+      <div>
+        <label>Nickname (login)</label>
+        <input id="new-nick" placeholder="Yana Soroka">
+      </div>
+      <div>
+        <label>Full name (optional)</label>
+        <input id="new-name" placeholder="Yana Soroka">
+      </div>
+      <div>
+        <label>Level</label>
+        <select id="new-level">
+          <option>B2</option><option>B1+</option><option>C1</option>
+        </select>
+      </div>
+      <button class="btn-primary" id="add-btn">Add student</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>All students</h2>
+  <div class="card" style="padding: 0;">
+    <table class="students-table">
+      <thead>
+        <tr>
+          <th>Nickname</th><th>Full name</th><th>Level</th><th>Current unit</th><th>Last seen</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td colspan="6" class="empty">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>Outcomes B2 admin · nickname-based login</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="shared/config.js"></script>
+<script>
+OutcomesSession.requireTeacher('login.html');
+
+const tbody = document.getElementById('tbody');
+const sb = getSupabase();
+
+async function loadStudents() {
+  if (!sb || OUTCOMES_CONFIG.SUPABASE_URL.includes('YOUR-PROJECT')) {
+    tbody.innerHTML = `<tr><td colspan="6" class="empty">
+      Supabase not configured yet — edit <code>shared/config.js</code> with your URL and anon key.
+    </td></tr>`;
+    return;
+  }
+  const { data, error } = await sb.from('students')
+    .select('id,nickname,full_name,level,current_unit,last_seen_at')
+    .order('nickname');
+  if (error) { tbody.innerHTML = `<tr><td colspan="6" class="empty">Error: ${error.message}</td></tr>`; return; }
+  if (!data.length) {
+    tbody.innerHTML = `<tr><td colspan="6" class="empty">No students yet — add one above.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = data.map(s => `
+    <tr>
+      <td><strong>${s.nickname}</strong></td>
+      <td>${s.full_name || '—'}</td>
+      <td>${s.level || 'B2'}</td>
+      <td>Unit ${s.current_unit || 1}</td>
+      <td>${s.last_seen_at ? new Date(s.last_seen_at).toLocaleDateString() : '—'}</td>
+      <td><button class="del-btn" data-id="${s.id}" data-nick="${s.nickname}">Remove</button></td>
+    </tr>
+  `).join('');
+  tbody.querySelectorAll('.del-btn').forEach(b => b.addEventListener('click', () => removeStudent(b.dataset.id, b.dataset.nick)));
+}
+
+document.getElementById('add-btn').addEventListener('click', async () => {
+  const nickname = document.getElementById('new-nick').value.trim();
+  const full_name = document.getElementById('new-name').value.trim() || nickname;
+  const level = document.getElementById('new-level').value;
+  if (!nickname) { alert('Nickname is required'); return; }
+  if (!sb) { alert('Supabase not configured'); return; }
+  const { error } = await sb.from('students').insert({ nickname, full_name, level, current_unit: 1 });
+  if (error) { alert(error.message); return; }
+  document.getElementById('new-nick').value = '';
+  document.getElementById('new-name').value = '';
+  loadStudents();
+});
+
+async function removeStudent(id, nick) {
+  if (!confirm(`Remove ${nick}? All their progress will be deleted.`)) return;
+  const { error } = await sb.from('students').delete().eq('id', id);
+  if (error) { alert(error.message); return; }
+  loadStudents();
+}
+
+loadStudents();
+</script>
+</body>
+</html>

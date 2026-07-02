@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outcomes B2 — Sign in</title>
+<link rel="stylesheet" href="shared/styles.css">
+</head>
+<body>
+<div class="wrap" style="max-width: 640px;">
+
+<header>
+  <div class="eyebrow">Outcomes B2 · Lexical Revision</div>
+  <h1>Who are you?</h1>
+  <p class="subtitle">Pick your nickname to see your progress, submissions and next review.</p>
+</header>
+
+<section>
+  <div class="form-card">
+    <label>Role</label>
+    <div style="display:flex; gap:10px; margin-bottom:22px;">
+      <button class="btn student" data-role="student" style="flex:1;">I'm a student</button>
+      <button class="btn teacher" data-role="teacher" style="flex:1;">I'm the teacher</button>
+    </div>
+
+    <div id="student-block" style="display:none;">
+      <label for="nick">Nickname</label>
+      <select id="nick">
+        <option value="">— pick your nickname —</option>
+      </select>
+      <button id="enter-student" class="btn-primary">Enter</button>
+    </div>
+
+    <div id="teacher-block" style="display:none;">
+      <label for="pass">Teacher passphrase</label>
+      <input type="password" id="pass" placeholder="passphrase">
+      <button id="enter-teacher" class="btn-primary">Enter as teacher</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Outcomes B2 · 3rd edition · lexical approach
+</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="shared/config.js"></script>
+<script>
+const studentBlock = document.getElementById('student-block');
+const teacherBlock = document.getElementById('teacher-block');
+const nickSelect   = document.getElementById('nick');
+
+document.querySelectorAll('[data-role]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const role = btn.dataset.role;
+    if (role === 'student') {
+      studentBlock.style.display = 'block';
+      teacherBlock.style.display = 'none';
+      await loadStudents();
+    } else {
+      teacherBlock.style.display = 'block';
+      studentBlock.style.display = 'none';
+    }
+  });
+});
+
+async function loadStudents() {
+  const sb = getSupabase();
+  if (!sb) {
+    // Fallback: local list if Supabase not configured yet
+    const local = ['Yana Soroka','Mike Pylypenko','Mike B2','Darina B2'];
+    nickSelect.innerHTML = '<option value="">— pick your nickname —</option>' +
+      local.map(n => `<option value="${n}">${n}</option>`).join('');
+    return;
+  }
+  const { data, error } = await sb.from('students').select('id,nickname').order('nickname');
+  if (error) { console.error(error); return; }
+  nickSelect.innerHTML = '<option value="">— pick your nickname —</option>' +
+    data.map(s => `<option value="${s.id}" data-nick="${s.nickname}">${s.nickname}</option>`).join('');
+}
+
+document.getElementById('enter-student').addEventListener('click', () => {
+  const opt = nickSelect.selectedOptions[0];
+  if (!opt || !opt.value) { alert('Pick your nickname first.'); return; }
+  OutcomesSession.set({
+    role: OUTCOMES_CONFIG.ROLE_STUDENT,
+    student_id: opt.value,
+    nickname: opt.dataset.nick || opt.textContent
+  });
+  window.location.href = 'index.html';
+});
+
+document.getElementById('enter-teacher').addEventListener('click', () => {
+  const pass = document.getElementById('pass').value;
+  if (pass !== OUTCOMES_CONFIG.TEACHER_PASSPHRASE) {
+    alert('Wrong passphrase.'); return;
+  }
+  OutcomesSession.set({ role: OUTCOMES_CONFIG.ROLE_TEACHER, nickname: 'Teacher' });
+  window.location.href = 'index.html';
+});
+</script>
+</body>
+</html>

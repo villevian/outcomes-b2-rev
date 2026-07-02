@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 01 · Entertainment — Outcomes B2 Revision</title>
+<style>
+  :root {
+    --sky: #c9d8e2;
+    --sky-deep: #a8bcc9;
+    --orange: #e8863c;
+    --orange-warm: #f27430;
+    --orange-deep: #d16a25;
+    --plum: #8a7d8f;
+    --cream: #f5efe8;
+    --ink: #1f1a1f;
+    --ink-soft: #4a4048;
+    --muted: #6b6b6b;
+    --glass: rgba(255, 255, 255, 0.55);
+    --glass-strong: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.65);
+    --good: #4a9d5f;
+    --bad: #d94848;
+    --warn: #e0a92c;
+    --radius: 18px;
+    --radius-sm: 10px;
+    --shadow-glass: 0 8px 32px rgba(120, 90, 60, 0.12), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(232,134,60,0.35) 0%, transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(201,216,226,0.9) 0%, transparent 55%),
+      radial-gradient(circle at 75% 85%, rgba(242,116,48,0.45) 0%, transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(138,125,143,0.35) 0%, transparent 45%),
+      linear-gradient(135deg, #f5efe8 0%, #c9d8e2 100%);
+    background-attachment: fixed;
+  }
+  .bg-shapes { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .bg-shapes::before, .bg-shapes::after {
+    content: ''; position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.6;
+  }
+  .bg-shapes::before { width: 500px; height: 500px; background: var(--orange); top: -100px; right: -150px; }
+  .bg-shapes::after { width: 400px; height: 400px; background: var(--sky-deep); bottom: -100px; left: -100px; }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
+  a { color: var(--orange-deep); }
+  a.back {
+    font-size: 13px; color: var(--ink-soft); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-bottom: 24px; padding: 8px 14px;
+    background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border); border-radius: 100px; font-weight: 500;
+  }
+  a.back:hover { background: var(--glass-strong); }
+
+  /* HERO */
+  header.hero {
+    background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius);
+    padding: 40px; box-shadow: var(--shadow-glass); margin-bottom: 24px;
+  }
+  .unit-badge {
+    display: inline-block; padding: 6px 14px;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-warm) 100%);
+    color: white; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 16px; box-shadow: 0 4px 12px rgba(232,134,60,0.4);
+  }
+  h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.1; margin: 0 0 14px; font-weight: 700; letter-spacing: -0.025em; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 24px; max-width: 620px; line-height: 1.5; }
+  .quick-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .fact { background: rgba(255,255,255,0.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.6); border-radius: var(--radius-sm); padding: 12px 14px; }
+  .fact .label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 3px; }
+  .fact .value { font-size: 14px; font-weight: 600; }
+
+  /* CARDS */
+  section.card {
+    background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius);
+    padding: 32px 36px; margin-bottom: 20px; box-shadow: var(--shadow-glass);
+  }
+  h2 { font-size: 24px; margin: 0 0 8px; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  h2 .sec-num { font-size: 13px; color: var(--orange-deep); font-weight: 700; letter-spacing: 0.1em; }
+  h2 .points-total { font-size: 12px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-warm) 100%); color: white; padding: 3px 10px; border-radius: 100px; font-weight: 700; margin-left: auto; }
+  .sec-desc { font-size: 14px; color: var(--ink-soft); margin: 0 0 24px; }
+  h3 { font-size: 16px; margin: 22px 0 10px; font-weight: 700; color: var(--orange-deep); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .task-tag { display: inline-block; font-size: 10px; padding: 2px 8px; background: rgba(138,125,143,0.2); color: var(--plum); border-radius: 100px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 4px; }
+  .pts { display: inline-block; font-size: 10px; padding: 2px 8px; background: rgba(232,134,60,0.2); color: var(--orange-deep); border-radius: 100px; font-weight: 700; letter-spacing: 0.05em; margin-left: 4px; }
+  .warn-tag { display: inline-block; font-size: 10px; padding: 2px 8px; background: rgba(224,169,44,0.2); color: #a67e00; border-radius: 100px; font-weight: 700; letter-spacing: 0.05em; }
+
+  /* INTERACTIVE REFERENCE — chip grid */
+  .ref-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .ref-tab {
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 14px; border-radius: 100px; cursor: pointer;
+    font-size: 12px; font-weight: 600; color: var(--ink-soft);
+    transition: all .15s;
+  }
+  .ref-tab.active { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-warm) 100%); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(232,134,60,0.3); }
+  .ref-panel { display: none; }
+  .ref-panel.active { display: block; }
+
+  .ref-help {
+    font-size: 12px; color: var(--ink-soft); background: rgba(201,216,226,0.4);
+    padding: 10px 14px; border-radius: 8px; border-left: 3px solid var(--sky-deep);
+    margin-bottom: 14px; line-height: 1.5;
+  }
+  .ref-help strong { color: var(--orange-deep); }
+
+  .chip-grid {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .chip {
+    padding: 8px 14px; border-radius: 100px;
+    background: rgba(255,255,255,0.6);
+    border: 1.5px solid rgba(0,0,0,0.08);
+    font-size: 13px; font-weight: 500; color: var(--ink);
+    cursor: pointer;
+    transition: all .15s;
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    user-select: none;
+    position: relative;
+  }
+  .chip:hover { background: white; transform: translateY(-1px); }
+  .chip[data-state="known"] {
+    background: rgba(74,157,95,0.15); border-color: var(--good);
+    color: var(--good);
+  }
+  .chip[data-state="known"]::before { content: '✓ '; font-weight: 700; }
+  .chip[data-state="unknown"] {
+    background: rgba(217,72,72,0.15); border-color: var(--bad);
+    color: var(--bad);
+  }
+  .chip[data-state="unknown"]::before { content: '✗ '; font-weight: 700; }
+
+  .ref-summary {
+    margin-top: 20px; padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(232,134,60,0.1) 0%, rgba(242,116,48,0.05) 100%);
+    border-radius: var(--radius-sm); border: 1px solid rgba(232,134,60,0.2);
+    font-size: 13px;
+  }
+  .ref-summary strong { color: var(--orange-deep); font-size: 14px; }
+
+  /* TASKS */
+  .task {
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.5);
+    border-radius: var(--radius-sm); padding: 20px 22px; margin: 12px 0 24px;
+  }
+  .task p { margin: 0 0 12px; font-size: 14px; }
+  .task .instruction {
+    font-size: 13px; color: var(--ink-soft); background: rgba(201,216,226,0.35);
+    padding: 8px 12px; border-radius: 8px; margin-bottom: 14px;
+    border-left: 3px solid var(--sky-deep);
+  }
+  .task .trap-warn {
+    font-size: 12px; color: #a67e00; background: rgba(224,169,44,0.15);
+    padding: 6px 12px; border-radius: 8px; margin-bottom: 12px;
+    border-left: 3px solid var(--warn); font-weight: 500;
+  }
+  .task ol { padding-left: 22px; margin: 0; }
+  .task ol > li { margin-bottom: 12px; font-size: 14px; line-height: 1.55; }
+  .task ol > li > .prompt { display: block; margin-bottom: 6px; }
+  .task .bank {
+    font-size: 13px; background: rgba(255,255,255,0.6);
+    padding: 10px 14px; border-radius: 8px; margin: 8px 0 14px;
+    border: 1px dashed rgba(138,125,143,0.4);
+  }
+  .task .bank strong { color: var(--orange-deep); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .task .bank code {
+    display: inline-block; background: white; padding: 2px 8px; margin: 2px 3px;
+    border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  input[type="text"], textarea {
+    width: 100%; background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0.08); border-radius: 8px;
+    padding: 8px 12px; font-family: inherit; font-size: 14px; color: var(--ink);
+    transition: border-color .15s, background .15s;
+  }
+  input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--orange); background: white; }
+  input.inline {
+    display: inline-block; width: auto; min-width: 120px;
+    padding: 4px 10px; font-size: 13.5px; margin: 0 2px;
+    border-bottom: 2px solid var(--orange); border-radius: 4px 4px 0 0;
+    border-left: 0; border-right: 0; border-top: 0;
+    background: rgba(255,255,255,0.55);
+  }
+  input.inline:focus { background: white; border-bottom-color: var(--orange-deep); }
+  input.inline.correct { background: rgba(74,157,95,0.18); border-bottom-color: var(--good); }
+  input.inline.wrong { background: rgba(217,72,72,0.15); border-bottom-color: var(--bad); }
+  textarea { min-height: 60px; resize: vertical; line-height: 1.5; }
+
+  /* RADIO/CHECKBOX */
+  .choice { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+  .choice label {
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.06);
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    font-size: 13.5px; transition: all .15s; display: flex; align-items: center; gap: 8px;
+  }
+  .choice label:hover { background: white; }
+  .choice input[type="radio"] { accent-color: var(--orange-deep); }
+  .choice label:has(input[type="radio"]:checked) { background: rgba(232,134,60,0.15); border-color: var(--orange); font-weight: 600; }
+  .choice label.correct-mark { background: rgba(74,157,95,0.2); border-color: var(--good); }
+  .choice label.wrong-mark { background: rgba(217,72,72,0.15); border-color: var(--bad); text-decoration: line-through; }
+
+  .criteria {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px; margin: 12px 0;
+  }
+  .criteria label {
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.08);
+    padding: 12px 16px; border-radius: 10px;
+    display: flex; align-items: center; gap: 10px; cursor: pointer;
+    font-size: 13.5px; font-weight: 500; transition: all .15s;
+  }
+  .criteria label:hover { background: white; }
+  .criteria input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--orange-deep); cursor: pointer; }
+  .criteria label:has(input:checked) {
+    background: linear-gradient(135deg, rgba(232,134,60,0.15) 0%, rgba(242,116,48,0.15) 100%);
+    border-color: var(--orange);
+  }
+
+  /* WORD FAMILY */
+  .word-family {
+    display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 8px;
+    align-items: center; margin: 8px 0;
+    padding: 8px 12px; background: rgba(255,255,255,0.4);
+    border-radius: 8px;
+  }
+  .word-family .root {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    color: var(--orange-deep); font-size: 14px;
+  }
+  .word-family input.inline { min-width: 100%; width: 100%; margin: 0; }
+  .word-family .col-label { display: none; }
+  @media (max-width: 600px) {
+    .word-family { grid-template-columns: 1fr; }
+    .word-family .col-label { display: block; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  }
+
+  /* VARIANT B (details) */
+  details.variant {
+    margin-top: 12px;
+    background: rgba(201,216,226,0.25);
+    border: 1px dashed rgba(138,125,143,0.3);
+    border-radius: var(--radius-sm);
+    padding: 0;
+    overflow: hidden;
+  }
+  details.variant > summary {
+    cursor: pointer;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--plum);
+    letter-spacing: 0.03em;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.4);
+  }
+  details.variant > summary::-webkit-details-marker { display: none; }
+  details.variant > summary::after {
+    content: '+ open Variant B';
+    font-size: 11px;
+    color: var(--orange-deep);
+    background: rgba(232,134,60,0.12);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  details.variant[open] > summary::after { content: '– close'; }
+  details.variant > div.variant-body {
+    padding: 14px 18px 18px;
+    border-top: 1px solid var(--glass-border);
+  }
+
+  /* SPEED ROUND */
+  .speed-round {
+    background: linear-gradient(135deg, rgba(232,134,60,0.1) 0%, rgba(242,116,48,0.05) 100%);
+    border: 1px solid rgba(232,134,60,0.25);
+    border-radius: var(--radius-sm); padding: 20px 22px; margin: 12px 0;
+  }
+  .speed-round .timer-display {
+    font-size: 42px; font-weight: 800; text-align: center;
+    color: var(--orange-deep); margin: 12px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .speed-round textarea { min-height: 100px; }
+  .btn-timer {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-warm) 100%);
+    color: white; border: none; padding: 10px 24px; border-radius: 100px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(232,134,60,0.35);
+  }
+  .speed-count { font-size: 14px; color: var(--ink-soft); margin-top: 8px; }
+  .speed-count strong { color: var(--orange-deep); font-size: 16px; }
+
+  /* SUBMIT */
+  .submit-zone { text-align: center; padding: 40px 0 20px; }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-warm) 100%);
+    color: white; border: none; padding: 18px 48px; border-radius: 100px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(232,134,60,0.4); letter-spacing: 0.03em;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,134,60,0.55); }
+  .btn-secondary {
+    background: var(--glass); backdrop-filter: blur(12px); color: var(--ink);
+    border: 1px solid var(--glass-border);
+    padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 600;
+    cursor: pointer; margin: 0 6px;
+  }
+
+  /* DASHBOARD */
+  #dashboard { display: none; }
+  #dashboard.show { display: block; }
+  .dash-hero {
+    background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 100%);
+    border: 1px solid var(--glass-border); border-radius: var(--radius);
+    padding: 40px; text-align: center; box-shadow: var(--shadow-glass);
+  }
+  .score-big {
+    font-size: 72px; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
+    background: linear-gradient(135deg, var(--orange-deep) 0%, var(--orange-warm) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .score-total { font-size: 18px; color: var(--muted); margin-top: 4px; }
+  .breakdown {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px; margin: 24px 0; text-align: left;
+  }
+  .breakdown-item { background: rgba(255,255,255,0.6); padding: 10px 14px; border-radius: 10px; }
+  .breakdown-item .name { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+  .breakdown-item .val { font-size: 16px; font-weight: 700; margin-top: 2px; }
+  .rubric-verdict { padding: 20px 24px; border-radius: var(--radius-sm); margin-top: 20px; text-align: left; }
+  .rubric-verdict.level-excellent { background: linear-gradient(135deg, rgba(74,157,95,0.15) 0%, rgba(74,157,95,0.05) 100%); border-left: 4px solid var(--good); }
+  .rubric-verdict.level-good { background: linear-gradient(135deg, rgba(232,134,60,0.15) 0%, rgba(232,134,60,0.05) 100%); border-left: 4px solid var(--orange); }
+  .rubric-verdict.level-gaps { background: linear-gradient(135deg, rgba(224,169,44,0.15) 0%, rgba(224,169,44,0.05) 100%); border-left: 4px solid var(--warn); }
+  .rubric-verdict.level-redo { background: linear-gradient(135deg, rgba(217,72,72,0.15) 0%, rgba(217,72,72,0.05) 100%); border-left: 4px solid var(--bad); }
+  .rubric-verdict h3 { margin: 0 0 6px; color: var(--ink); }
+  .rubric-verdict p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+  .spaced-rep-list {
+    margin-top: 20px; padding: 20px 24px; background: rgba(217,72,72,0.06);
+    border: 1px solid rgba(217,72,72,0.2); border-radius: var(--radius-sm);
+    text-align: left;
+  }
+  .spaced-rep-list h3 { color: var(--bad); margin: 0 0 8px; }
+  .spaced-rep-list p { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+  .spaced-rep-list .chip-grid .chip {
+    background: rgba(255,255,255,0.8); border-color: rgba(217,72,72,0.3); color: var(--ink);
+    cursor: default;
+  }
+  .spaced-rep-list .chip-grid .chip:hover { transform: none; }
+
+  /* PLAN */
+  .plan-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .plan-list li { display: flex; gap: 14px; padding: 12px 14px; background: rgba(255,255,255,0.4); border-radius: var(--radius-sm); align-items: flex-start; }
+  .plan-step {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-warm) 100%);
+    color: white; width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; flex-shrink: 0;
+  }
+  .plan-list li .body { font-size: 13.5px; line-height: 1.5; }
+  .plan-list li .body em { color: var(--muted); font-style: normal; font-size: 12px; }
+  .timer-pill { font-size: 10px; background: rgba(138,125,143,0.2); color: var(--plum); padding: 2px 8px; border-radius: 100px; font-weight: 700; letter-spacing: 0.05em; margin-left: 6px; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 20px 12px 60px; }
+    section.card { padding: 22px 20px; }
+    header.hero { padding: 28px 22px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .score-big { font-size: 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-shapes"></div>
+
+<div class="wrap">
+
+<a class="back" href="../../index.html">← All units</a>
+
+<header class="hero">
+  <div class="unit-badge">Unit 01 · Entertainment</div>
+  <h1>Films, music, books &amp; art</h1>
+  <p class="subtitle">Pages 6–13 · 76 headwords → 157 chunks total (with all collocates, derivatives &amp; opposites) · 3 lexical sets · Habits + intensifiers · Disagreeing politely. Full-unit revision — no cherry-picking.</p>
+  <div class="quick-facts">
+    <div class="fact"><div class="label">VB items</div><div class="value">157 chunks</div></div>
+    <div class="fact"><div class="label">Tasks</div><div class="value">A + B variants</div></div>
+    <div class="fact"><div class="label">Cycle sweep</div><div class="value">45 items</div></div>
+    <div class="fact"><div class="label">Speed round</div><div class="value">60 sec</div></div>
+    <div class="fact"><div class="label">Points</div><div class="value">237 max</div></div>
+    <div class="fact"><div class="label">Score</div><div class="value">% of attempted</div></div>
+  </div>
+</header>
+
+<!-- LESSON FLOW -->
+<section class="card">
+  <h2><span class="sec-num">01</span> Lesson flow</h2>
+  <p class="sec-desc">Fifteen distinct task types — no chunk appears twice. Start by tagging the reference: what you know vs. what you don't.</p>
+  <ol class="plan-list">
+    <li><span class="plan-step">1</span><div class="body"><strong>Tag the reference</strong> <span class="timer-pill">7 min</span><br><em>Click every chunk once for ✓ known, twice for ✗ unknown. Unknown ones auto-load into your spaced-rep list.</em></div></li>
+    <li><span class="plan-step">2</span><div class="body"><strong>Warm-up</strong> — guess the chunk from definition <span class="timer-pill">5 min</span></div></li>
+    <li><span class="plan-step">3</span><div class="body"><strong>Section A</strong> — 4 tasks on films/music/books <span class="timer-pill">15 min</span></div></li>
+    <li><span class="plan-step">4</span><div class="body"><strong>Section B</strong> — 4 tasks on plots <span class="timer-pill">15 min</span></div></li>
+    <li><span class="plan-step">5</span><div class="body"><strong>Section C</strong> — 3 tasks on pictures <span class="timer-pill">10 min</span></div></li>
+    <li><span class="plan-step">6</span><div class="body"><strong>Grammar chain</strong> — force each habit pattern once <span class="timer-pill">8 min</span></div></li>
+    <li><span class="plan-step">7</span><div class="body"><strong>Disagreeing politely</strong> <span class="timer-pill">10 min</span></div></li>
+    <li><span class="plan-step">8</span><div class="body"><strong>Cycle Sweep</strong> — 45 rapid gaps, all remaining chunks <span class="timer-pill">20 min</span></div></li>
+    <li><span class="plan-step">9</span><div class="body"><strong>Speaking</strong> — 2-min monologue <span class="timer-pill">10 min</span></div></li>
+    <li><span class="plan-step">10</span><div class="body"><strong>Speed round</strong> — bonus, 60 sec <span class="timer-pill">2 min</span></div></li>
+    <li><span class="plan-step">11</span><div class="body"><strong>Submit</strong> — dashboard + auto spaced-rep list <span class="timer-pill">3 min</span></div></li>
+  </ol>
+  <div class="ref-help" style="margin-top:16px;">
+    <strong>Variant A vs B:</strong> Every auto-check task has a collapsed <em>Variant B</em> below it — same task type, different chunks, no answer overlap. Do <strong>A in class</strong>, <strong>B as retest / homework</strong>. Or open both for a longer session. Score is calculated as % of what she actually attempted, not absolute total — so partial completion is fair.
+  </div>
+</section>
+
+<!-- INTERACTIVE REFERENCE -->
+<section class="card">
+  <h2><span class="sec-num">02</span> Interactive lexis reference</h2>
+  <p class="sec-desc">Every one of the 76 chunks from Vocabulary Builder Unit 1. This is the whole picture — not a curated subset.</p>
+
+  <div class="ref-help">
+    <strong>How to use:</strong> Click a chunk once — I know this ✓ (green). Click again — I don't know this ✗ (red). Click a third time to reset. Everything you mark red goes into your <strong>Spaced Repetition List</strong> at the bottom after Submit.
+  </div>
+
+  <div class="ref-tabs">
+    <div class="ref-tab active" data-panel="ref-a">A · Films/music/books (52)</div>
+    <div class="ref-tab" data-panel="ref-b">B · Plots (64)</div>
+    <div class="ref-tab" data-panel="ref-c">C · Pictures (41)</div>
+    <div class="ref-tab" data-panel="ref-g">Grammar patterns (10)</div>
+    <div class="ref-tab" data-panel="ref-dc">Disagreeing (7)</div>
+  </div>
+
+  <div class="ref-panel active" id="ref-a">
+    <div class="chip-grid">
+      <div class="chip">addicted (adj)</div>
+      <div class="chip">be addicted to</div>
+      <div class="chip">addict (n) — a book addict</div>
+      <div class="chip">addiction (n)</div>
+      <div class="chip">astonishing (adj)</div>
+      <div class="chip">astonish (v)</div>
+      <div class="chip">astonishingly (adv)</div>
+      <div class="chip">background (n)</div>
+      <div class="chip">background music</div>
+      <div class="chip">background noise</div>
+      <div class="chip">in the background</div>
+      <div class="chip">big-budget (adj)</div>
+      <div class="chip">a big-budget film / production</div>
+      <div class="chip">low-budget (adj)</div>
+      <div class="chip">a low-budget film</div>
+      <div class="chip">catchy (adj)</div>
+      <div class="chip">a catchy tune / chorus / slogan</div>
+      <div class="chip">commercial (adj)</div>
+      <div class="chip">a commercial success / flop</div>
+      <div class="chip">commercially (adv) — commercially viable</div>
+      <div class="chip">control (v) — how much sb does</div>
+      <div class="chip">control (n)</div>
+      <div class="chip">keep control of sth</div>
+      <div class="chip">under control</div>
+      <div class="chip">on demand</div>
+      <div class="chip">disturbing (adj)</div>
+      <div class="chip">find sth disturbing</div>
+      <div class="chip">a disturbing trend / thought</div>
+      <div class="chip">disturb (v)</div>
+      <div class="chip">disturbed (adj)</div>
+      <div class="chip">be disturbed by / about / at</div>
+      <div class="chip">dreadful (adj)</div>
+      <div class="chip">dread (v) — dreading the test</div>
+      <div class="chip">glued (v/adj)</div>
+      <div class="chip">be glued to sth / the screen</div>
+      <div class="chip">glue (n)</div>
+      <div class="chip">strong / thick glue</div>
+      <div class="chip">gripping (adj)</div>
+      <div class="chip">a gripping tale / story / drama / novel</div>
+      <div class="chip">grip (v)</div>
+      <div class="chip">gripped (adj) — we were gripped by</div>
+      <div class="chip">hilarious (adj)</div>
+      <div class="chip">absolutely hilarious</div>
+      <div class="chip">hilariously (adv)</div>
+      <div class="chip">hilarity (n)</div>
+      <div class="chip">inspiring (adj)</div>
+      <div class="chip">an inspiring teacher / speech / leader</div>
+      <div class="chip">inspire (v)</div>
+      <div class="chip">inspired (adj) — an inspired idea</div>
+      <div class="chip">over-the-top / OTT (adj)</div>
+      <div class="chip">a bit over-the-top</div>
+      <div class="chip">remake (n)</div>
+      <div class="chip">a remake of</div>
+      <div class="chip">remake (v)</div>
+      <div class="chip">stuff (n) — that kind of stuff</div>
+      <div class="chip">tear (n)</div>
+      <div class="chip">be in tears</div>
+      <div class="chip">be close to tears</div>
+      <div class="chip">burst into tears</div>
+      <div class="chip">tearful (adj)</div>
+      <div class="chip">tearfully (adv)</div>
+      <div class="chip">uplifting (adj)</div>
+      <div class="chip">an uplifting story / experience</div>
+      <div class="chip">uplifted (adj)</div>
+      <div class="chip">weird (adj)</div>
+      <div class="chip">weirdly (adv)</div>
+    </div>
+  </div>
+
+  <div class="ref-panel" id="ref-b">
+    <div class="chip-grid">
+      <div class="chip">adaptation (n)</div>
+      <div class="chip">an adaptation of</div>
+      <div class="chip">a television adaptation</div>
+      <div class="chip">adapt (v) — adapted from</div>
+      <div class="chip">all-time (adj)</div>
+      <div class="chip">an all-time favourite</div>
+      <div class="chip">an all-time high / low / record</div>
+      <div class="chip">basement (n)</div>
+      <div class="chip">a basement flat</div>
+      <div class="chip">base (n)</div>
+      <div class="chip">box office (n)</div>
+      <div class="chip">a box office hit</div>
+      <div class="chip">take £X at the box office</div>
+      <div class="chip">cast (n)</div>
+      <div class="chip">an amazing cast</div>
+      <div class="chip">be cast as</div>
+      <div class="chip">cast (v)</div>
+      <div class="chip">classic (adj)</div>
+      <div class="chip">a classic novel / film</div>
+      <div class="chip">classic literature</div>
+      <div class="chip">classic (n) — all-time classic</div>
+      <div class="chip">common ground (n)</div>
+      <div class="chip">find common ground</div>
+      <div class="chip">share common ground</div>
+      <div class="chip">desire (n)</div>
+      <div class="chip">a desire to do sth</div>
+      <div class="chip">a desire for</div>
+      <div class="chip">a strong desire</div>
+      <div class="chip">division (n)</div>
+      <div class="chip">division of labour</div>
+      <div class="chip">social divisions</div>
+      <div class="chip">driven (adj)</div>
+      <div class="chip">a driven professional</div>
+      <div class="chip">driven by</div>
+      <div class="chip">drive (v)</div>
+      <div class="chip">dubbing (n)</div>
+      <div class="chip">watch with dubbing / subtitles</div>
+      <div class="chip">elsewhere (adv)</div>
+      <div class="chip">popular here and elsewhere</div>
+      <div class="chip">evermore (adv)</div>
+      <div class="chip">flaw (n) — a flaw in</div>
+      <div class="chip">flawed (adj) — deeply flawed</div>
+      <div class="chip">graphic novel (n)</div>
+      <div class="chip">plot (n)</div>
+      <div class="chip">a complicated / simple plot</div>
+      <div class="chip">a plot twist</div>
+      <div class="chip">the plot unfolds / develops</div>
+      <div class="chip">prestigious (adj)</div>
+      <div class="chip">a prestigious award / university</div>
+      <div class="chip">prestige (n)</div>
+      <div class="chip">psychological (adj)</div>
+      <div class="chip">a psychological need / disorder</div>
+      <div class="chip">psychologically (adv)</div>
+      <div class="chip">reliant (adj)</div>
+      <div class="chip">be reliant on</div>
+      <div class="chip">rely on (v)</div>
+      <div class="chip">reliable (adj)</div>
+      <div class="chip">revolve (v)</div>
+      <div class="chip">revolve around</div>
+      <div class="chip">satire (n)</div>
+      <div class="chip">a political satire</div>
+      <div class="chip">a sharp satire</div>
+      <div class="chip">sequel (n)</div>
+      <div class="chip">a sequel to</div>
+      <div class="chip">sharp (adj)</div>
+      <div class="chip">sharp criticism</div>
+      <div class="chip">sharply (adv) — sharply critical</div>
+      <div class="chip">shoot (v)</div>
+      <div class="chip">shoot a film / TV series</div>
+      <div class="chip">smash hit (n)</div>
+      <div class="chip">a smash hit album / single</div>
+      <div class="chip">streaming (n)</div>
+      <div class="chip">a streaming service</div>
+      <div class="chip">stream (v) — live streamed</div>
+      <div class="chip">tackle (v)</div>
+      <div class="chip">tackle a problem / challenge</div>
+      <div class="chip">tension (n)</div>
+      <div class="chip">tension builds / mounting tension</div>
+      <div class="chip">tense (adj)</div>
+      <div class="chip">a tense atmosphere / silence</div>
+      <div class="chip">terrorist (n)</div>
+      <div class="chip">terrorism (n)</div>
+      <div class="chip">tip of the iceberg (n)</div>
+      <div class="chip">just the tip of the iceberg</div>
+      <div class="chip">touch (v)</div>
+      <div class="chip">touch on (a subject)</div>
+      <div class="chip">twist (n)</div>
+      <div class="chip">twists and turns</div>
+      <div class="chip">wealth (n)</div>
+      <div class="chip">a wealth gap</div>
+      <div class="chip">wealthy (adj)</div>
+    </div>
+  </div>
+
+  <div class="ref-panel" id="ref-c">
+    <div class="chip-grid">
+      <div class="chip">abstract (adj)</div>
+      <div class="chip">abstract paintings / compositions</div>
+      <div class="chip">abstract (n)</div>
+      <div class="chip">ambiguous (adj)</div>
+      <div class="chip">an ambiguous phrase / meaning</div>
+      <div class="chip">deliberately ambiguous</div>
+      <div class="chip">ambiguity (n)</div>
+      <div class="chip">avoid ambiguity</div>
+      <div class="chip">unambiguous (adj) — opp.</div>
+      <div class="chip">unambiguously (adv)</div>
+      <div class="chip">atmospheric (adj)</div>
+      <div class="chip">atmospheric music / painting</div>
+      <div class="chip">beneath (adv/prep)</div>
+      <div class="chip">beneath the surface</div>
+      <div class="chip">companion (n)</div>
+      <div class="chip">a companion piece</div>
+      <div class="chip">a travel companion</div>
+      <div class="chip">compose (v)</div>
+      <div class="chip">compose music</div>
+      <div class="chip">conventional (adj)</div>
+      <div class="chip">a conventional portrait / education</div>
+      <div class="chip">unconventional (adj) — opp.</div>
+      <div class="chip">depict (v)</div>
+      <div class="chip">depict sb as</div>
+      <div class="chip">digest (v) — hard to digest</div>
+      <div class="chip">digest information / news</div>
+      <div class="chip">disrupt (v)</div>
+      <div class="chip">disrupt a meeting / party</div>
+      <div class="chip">disruptive (adj)</div>
+      <div class="chip">domestic (adj)</div>
+      <div class="chip">a domestic scene / life</div>
+      <div class="chip">dramatic (adj)</div>
+      <div class="chip">dramatic scenery / a dramatic painting</div>
+      <div class="chip">dramatically (adv)</div>
+      <div class="chip">foreground (n)</div>
+      <div class="chip">in the foreground</div>
+      <div class="chip">heated (adj)</div>
+      <div class="chip">a heated debate / argument</div>
+      <div class="chip">in the heat of the moment</div>
+      <div class="chip">heat (n)</div>
+      <div class="chip">impression (n)</div>
+      <div class="chip">get the impression that</div>
+      <div class="chip">give sb an impression</div>
+      <div class="chip">give sb a wrong impression</div>
+      <div class="chip">leave sb with the impression</div>
+      <div class="chip">a first / initial impression</div>
+      <div class="chip">a good / bad impression</div>
+      <div class="chip">a vivid impression</div>
+      <div class="chip">interpretation (n)</div>
+      <div class="chip">open to interpretation</div>
+      <div class="chip">a possible interpretation</div>
+      <div class="chip">interpret (v)</div>
+      <div class="chip">interpret dreams / behaviour</div>
+      <div class="chip">landscape (n)</div>
+      <div class="chip">a beautiful / rocky landscape</div>
+      <div class="chip">maid (n)</div>
+      <div class="chip">presumably (adv)</div>
+      <div class="chip">subtle (adj)</div>
+      <div class="chip">a subtle colour / flavour / difference</div>
+      <div class="chip">subtly (adv)</div>
+      <div class="chip">underlying (adj)</div>
+      <div class="chip">the underlying message / cause</div>
+      <div class="chip">visual (adj)</div>
+      <div class="chip">visual clues</div>
+      <div class="chip">a visual picture</div>
+      <div class="chip">visualize (v)</div>
+    </div>
+  </div>
+
+  <div class="ref-panel" id="ref-g">
+    <div class="chip-grid">
+      <div class="chip">I tend to + V</div>
+      <div class="chip">I'll (usually) + V</div>
+      <div class="chip">I used to + V</div>
+      <div class="chip">I would + V (past)</div>
+      <div class="chip">keep + V-ing</div>
+      <div class="chip">be always + V-ing</div>
+      <div class="chip">absolutely + STRONG adj</div>
+      <div class="chip">really / very + gradable</div>
+      <div class="chip">a bit + negative adj</div>
+      <div class="chip">deeply + emotion adj</div>
+    </div>
+  </div>
+
+  <div class="ref-panel" id="ref-dc">
+    <div class="chip-grid">
+      <div class="chip">I see what you mean, but…</div>
+      <div class="chip">I'm not sure I agree.</div>
+      <div class="chip">Up to a point, but…</div>
+      <div class="chip">I take your point, but…</div>
+      <div class="chip">Yes, but on the other hand…</div>
+      <div class="chip">That's true, although…</div>
+      <div class="chip">I can see why you'd say that, but…</div>
+    </div>
+  </div>
+
+  <div class="ref-summary">
+    <strong id="ref-count">0 marked unknown</strong> — these will land in your Spaced Repetition list after Submit.
+  </div>
+</section>
+
+<form id="test-form" onsubmit="event.preventDefault(); scoreAll();">
+
+<!-- WARM-UP -->
+<section class="card">
+  <h2><span class="sec-num">W</span> Warm-up · guess the chunk <span class="points-total">5 pts</span></h2>
+  <p class="sec-desc">Definition given. You type the chunk (exact form matters).</p>
+  <div class="task">
+    <div class="instruction">Type the chunk that matches each definition. Watch prepositions and articles.</div>
+    <ol>
+      <li>
+        <span class="prompt">Extremely funny (adj):</span>
+        <input type="text" class="inline" data-task="w" data-item="1" data-answer="hilarious" placeholder="one word">
+      </li>
+      <li>
+        <span class="prompt">So exciting you can't stop watching (adj describing a drama):</span>
+        <input type="text" class="inline" data-task="w" data-item="2" data-answer="gripping" placeholder="one word">
+      </li>
+      <li>
+        <span class="prompt">Available whenever you want to watch it online (2 words):</span>
+        <input type="text" class="inline" data-task="w" data-item="3" data-answer="on demand" placeholder="__ __">
+      </li>
+      <li>
+        <span class="prompt">A song you can't get out of your head (2 words, adj+noun):</span>
+        <input type="text" class="inline" data-task="w" data-item="4" data-answer="catchy tune" placeholder="__ __">
+      </li>
+      <li>
+        <span class="prompt">A very small visible part of a much bigger hidden problem (5 words):</span>
+        <input type="text" class="inline" data-task="w" data-item="5" data-answer="the tip of the iceberg" placeholder="__ __ __ __ __">
+      </li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>Warm-up · Variant B <span class="pts">5 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Different definitions, different chunks. Type the exact form.</div>
+        <ol>
+          <li>Extremely bad or unpleasant (adj): <input type="text" class="inline" data-task="wb" data-item="1" data-answer="dreadful" placeholder="one word"></li>
+          <li>Making you feel happy and hopeful (adj): <input type="text" class="inline" data-task="wb" data-item="2" data-answer="uplifting" placeholder="one word"></li>
+          <li>Extremely surprising (adj): <input type="text" class="inline" data-task="wb" data-item="3" data-answer="astonishing" placeholder="one word"></li>
+          <li>Mentions a topic briefly without going deep (verb+prep, 2 words): <input type="text" class="inline" data-task="wb" data-item="4" data-answer="touches on" placeholder="__ __"></li>
+          <li>The hidden main idea of a story or painting (3 words): <input type="text" class="inline" data-task="wb" data-item="5" data-answer="the underlying message" placeholder="__ __ __"></li>
+        </ol>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- SECTION A -->
+<section class="card">
+  <h2><span class="sec-num">A</span> Films, music &amp; books <span class="points-total">28 pts</span></h2>
+
+  <h3>A1 · Fill the film review <span class="task-tag">Apply</span><span class="pts">10 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Complete this review. One chunk per blank, from the bank.</div>
+    <div class="bank"><strong>Bank</strong>
+      <code>on demand</code> <code>big-budget</code> <code>gripping</code> <code>in the background</code>
+      <code>disturbing</code> <code>burst into tears</code> <code>uplifting</code>
+      <code>weird</code> <code>a remake of</code> <code>absolutely hilarious</code>
+    </div>
+    <p style="line-height:2.1;font-size:14.5px;">
+      Last night I watched the new Denis Villeneuve film <em>Silent Coast</em> <input type="text" class="inline" data-task="a1" data-item="1" data-answer="on demand">. It's technically <input type="text" class="inline" data-task="a1" data-item="2" data-answer="a remake of"> a 70s Italian thriller, but it feels completely new. It's a <input type="text" class="inline" data-task="a1" data-item="3" data-answer="big-budget"> production — you can see every dollar on screen. The story is <input type="text" class="inline" data-task="a1" data-item="4" data-answer="gripping"> from the very first scene. The atmospheric score is always there <input type="text" class="inline" data-task="a1" data-item="5" data-answer="in the background">, quietly setting the mood. Some of the middle scenes are deeply <input type="text" class="inline" data-task="a1" data-item="6" data-answer="disturbing"> — I had to look away. But the comic-relief sidekick is <input type="text" class="inline" data-task="a1" data-item="7" data-answer="absolutely hilarious">, which balances the tone. The final ten minutes had me <input type="text" class="inline" data-task="a1" data-item="8" data-answer="burst into tears"> even though nothing tragic happened — it was just very <input type="text" class="inline" data-task="a1" data-item="9" data-answer="uplifting">. I know it sounds <input type="text" class="inline" data-task="a1" data-item="10" data-answer="weird">, but it works.
+    </p>
+    <div class="trap-warn">⚠ Watch item 8 — think about tense. "Had me ___". Not the -ing form.</div>
+  </div>
+
+  <details class="variant">
+    <summary>A1 · Variant B — new film review, different chunks <span class="pts">10 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Second review, ten new chunks. Type exact form.</div>
+        <div class="bank"><strong>Bank</strong>
+          <code>addicted to</code> <code>a catchy tune</code> <code>background music</code>
+          <code>an inspiring</code> <code>inspired</code> <code>dreadful</code>
+          <code>glued to</code> <code>absolutely gripping</code> <code>a bit over-the-top</code>
+          <code>in tears</code>
+        </div>
+        <p style="line-height:2.1;font-size:14.5px;">
+          I never thought I'd get <input type="text" class="inline" data-task="a1b" data-item="1" data-answer="addicted to"> a nature documentary, but here we are. The cinematography is <input type="text" class="inline" data-task="a1b" data-item="2" data-answer="absolutely gripping">. There's <input type="text" class="inline" data-task="a1b" data-item="3" data-answer="a catchy tune"> in the score that keeps playing in my head. The <input type="text" class="inline" data-task="a1b" data-item="4" data-answer="background music"> during the underwater scenes is haunting. The main narrator is deeply <input type="text" class="inline" data-task="a1b" data-item="5" data-answer="an inspiring"> voice — quiet authority. Some scenes about deforestation are <input type="text" class="inline" data-task="a1b" data-item="6" data-answer="dreadful"> to watch. I found myself <input type="text" class="inline" data-task="a1b" data-item="7" data-answer="glued to"> the screen for three hours. Yes, the ending is <input type="text" class="inline" data-task="a1b" data-item="8" data-answer="a bit over-the-top"> with the swelling music, and I nearly ended up <input type="text" class="inline" data-task="a1b" data-item="9" data-answer="in tears">. Still — an <input type="text" class="inline" data-task="a1b" data-item="10" data-answer="inspired"> piece of filmmaking.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <h3>A2 · Odd one out <span class="task-tag">Analyze</span><span class="pts">5 pts</span></h3>
+  <div class="task">
+    <div class="instruction">One item in each set does NOT collocate with the underlined chunk. Mark the odd one out.</div>
+    <ol>
+      <li>
+        <span class="prompt"><u>gripping</u> _____</span>
+        <div class="choice">
+          <label><input type="radio" name="a2-1" value="story"><span>story</span></label>
+          <label><input type="radio" name="a2-1" value="drama"><span>drama</span></label>
+          <label><input type="radio" name="a2-1" value="meal" data-task="a2" data-item="1"><span>meal</span></label>
+          <label><input type="radio" name="a2-1" value="ending"><span>ending</span></label>
+        </div>
+      </li>
+      <li>
+        <span class="prompt"><u>burst into</u> _____</span>
+        <div class="choice">
+          <label><input type="radio" name="a2-2" value="tears"><span>tears</span></label>
+          <label><input type="radio" name="a2-2" value="laughter"><span>laughter</span></label>
+          <label><input type="radio" name="a2-2" value="song"><span>song</span></label>
+          <label><input type="radio" name="a2-2" value="silence" data-task="a2" data-item="2"><span>silence</span></label>
+        </div>
+      </li>
+      <li>
+        <span class="prompt"><u>absolutely</u> _____</span>
+        <div class="choice">
+          <label><input type="radio" name="a2-3" value="gripping"><span>gripping</span></label>
+          <label><input type="radio" name="a2-3" value="hilarious"><span>hilarious</span></label>
+          <label><input type="radio" name="a2-3" value="nice" data-task="a2" data-item="3"><span>nice</span></label>
+          <label><input type="radio" name="a2-3" value="dreadful"><span>dreadful</span></label>
+        </div>
+      </li>
+      <li>
+        <span class="prompt">a _____ <u>flop</u></span>
+        <div class="choice">
+          <label><input type="radio" name="a2-4" value="commercial"><span>commercial</span></label>
+          <label><input type="radio" name="a2-4" value="box-office"><span>box-office</span></label>
+          <label><input type="radio" name="a2-4" value="total"><span>total</span></label>
+          <label><input type="radio" name="a2-4" value="prestigious" data-task="a2" data-item="4"><span>prestigious</span></label>
+        </div>
+      </li>
+      <li>
+        <span class="prompt"><u>be addicted</u> _____</span>
+        <div class="choice">
+          <label><input type="radio" name="a2-5" value="to"><span>to</span></label>
+          <label><input type="radio" name="a2-5" value="on" data-task="a2" data-item="5"><span>on</span></label>
+          <label><input type="radio" name="a2-5" value="to something"><span>to something</span></label>
+          <label><input type="radio" name="a2-5" value="to doing"><span>to doing</span></label>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>A2 · Variant B — new odd-one-out sets <span class="pts">5 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Same rule — pick the one that doesn't collocate.</div>
+        <ol>
+          <li>
+            <span class="prompt">an <u>uplifting</u> _____</span>
+            <div class="choice">
+              <label><input type="radio" name="a2b-1" value="story"><span>story</span></label>
+              <label><input type="radio" name="a2b-1" value="experience"><span>experience</span></label>
+              <label><input type="radio" name="a2b-1" value="occasion"><span>occasion</span></label>
+              <label><input type="radio" name="a2b-1" value="punishment" data-task="a2b" data-item="1"><span>punishment</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt">a <u>catchy</u> _____</span>
+            <div class="choice">
+              <label><input type="radio" name="a2b-2" value="tune"><span>tune</span></label>
+              <label><input type="radio" name="a2b-2" value="chorus"><span>chorus</span></label>
+              <label><input type="radio" name="a2b-2" value="slogan"><span>slogan</span></label>
+              <label><input type="radio" name="a2b-2" value="painting" data-task="a2b" data-item="2"><span>painting</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt"><u>dreadful</u> _____</span>
+            <div class="choice">
+              <label><input type="radio" name="a2b-3" value="weather"><span>weather</span></label>
+              <label><input type="radio" name="a2b-3" value="news"><span>news</span></label>
+              <label><input type="radio" name="a2b-3" value="mistake"><span>mistake</span></label>
+              <label><input type="radio" name="a2b-3" value="celebration" data-task="a2b" data-item="3"><span>celebration</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt">a <u>disturbing</u> _____</span>
+            <div class="choice">
+              <label><input type="radio" name="a2b-4" value="trend"><span>trend</span></label>
+              <label><input type="radio" name="a2b-4" value="thought"><span>thought</span></label>
+              <label><input type="radio" name="a2b-4" value="pattern"><span>pattern</span></label>
+              <label><input type="radio" name="a2b-4" value="reward" data-task="a2b" data-item="4"><span>reward</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt"><u>burst</u> ___ tears</span>
+            <div class="choice">
+              <label><input type="radio" name="a2b-5" value="into"><span>into</span></label>
+              <label><input type="radio" name="a2b-5" value="in" data-task="a2b" data-item="5"><span>in</span></label>
+              <label><input type="radio" name="a2b-5" value="into loud"><span>into loud</span></label>
+              <label><input type="radio" name="a2b-5" value="suddenly into"><span>suddenly into</span></label>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <h3>A3 · Word family builder <span class="task-tag">Apply</span><span class="pts">8 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Given the root, produce the adjective, noun, and verb forms. Watch spelling.</div>
+    <div class="word-family">
+      <div class="root">inspire</div>
+      <div><div class="col-label">adj</div><input type="text" class="inline" data-task="a3" data-item="1a" data-answer="inspiring" placeholder="adj (-ing)"></div>
+      <div><div class="col-label">noun</div><input type="text" class="inline" data-task="a3" data-item="1b" data-answer="inspiration" placeholder="noun"></div>
+      <div><div class="col-label">adj (past-participle)</div><input type="text" class="inline" data-task="a3" data-item="1c" data-answer="inspired" placeholder="adj (-ed)"></div>
+    </div>
+    <div class="word-family">
+      <div class="root">addict</div>
+      <div><input type="text" class="inline" data-task="a3" data-item="2a" data-answer="addicted" placeholder="adj (-ed)"></div>
+      <div><input type="text" class="inline" data-task="a3" data-item="2b" data-answer="addiction" placeholder="noun (state)"></div>
+      <div><input type="text" class="inline" data-task="a3" data-item="2c" data-answer="addictive" placeholder="adj (causes)"></div>
+    </div>
+    <div class="word-family">
+      <div class="root">disturb</div>
+      <div><input type="text" class="inline" data-task="a3" data-item="3a" data-answer="disturbing" placeholder="adj (-ing)"></div>
+      <div><input type="text" class="inline" data-task="a3" data-item="3b" data-answer="disturbance" placeholder="noun"></div>
+      <div><input type="text" class="inline" data-task="a3" data-item="3c" data-answer="disturbed" placeholder="adj (-ed)"></div>
+    </div>
+    <div class="word-family">
+      <div class="root">astonish</div>
+      <div><input type="text" class="inline" data-task="a3" data-item="4a" data-answer="astonishing" placeholder="adj (-ing)"></div>
+      <div><input type="text" class="inline" data-task="a3" data-item="4b" data-answer="astonishment" placeholder="noun"></div>
+      <div><input type="text" class="inline" data-task="a3" data-item="4c" data-answer="astonished" placeholder="adj (-ed)"></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:4px;">Total 12 forms, but scored /8 (0.66 pt each, rounded).</p>
+  </div>
+
+  <details class="variant">
+    <summary>A3 · Variant B — new roots (cross-section) <span class="pts">8 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Four new roots from B/C sections. Same rule.</div>
+        <div class="word-family">
+          <div class="root">adapt</div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="1a" data-answer="adapt" placeholder="verb"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="1b" data-answer="adaptation" placeholder="noun"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="1c" data-answer="adapted" placeholder="adj (-ed)"></div>
+        </div>
+        <div class="word-family">
+          <div class="root">depict</div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="2a" data-answer="depict" placeholder="verb"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="2b" data-answer="depiction" placeholder="noun"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="2c" data-answer="depicted" placeholder="adj (-ed)"></div>
+        </div>
+        <div class="word-family">
+          <div class="root">disrupt</div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="3a" data-answer="disrupt" placeholder="verb"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="3b" data-answer="disruption" placeholder="noun"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="3c" data-answer="disruptive" placeholder="adj"></div>
+        </div>
+        <div class="word-family">
+          <div class="root">interpret</div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="4a" data-answer="interpret" placeholder="verb"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="4b" data-answer="interpretation" placeholder="noun"></div>
+          <div><input type="text" class="inline" data-task="a3b" data-item="4c" data-answer="interpretive" placeholder="adj"></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <h3>A4 · Personalize <span class="task-tag">Create</span><span class="pts">5 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Different chunk each. One sentence about YOUR life. Not textbook examples.</div>
+    <ol>
+      <li>
+        <span class="prompt">Use <code>a low-budget film</code></span>
+        <textarea data-task="a4" data-item="1" rows="1"></textarea>
+      </li>
+      <li>
+        <span class="prompt">Use <code>find sth disturbing</code></span>
+        <textarea data-task="a4" data-item="2" rows="1"></textarea>
+      </li>
+      <li>
+        <span class="prompt">Use <code>a dreadful ___</code> (news / weather / experience)</span>
+        <textarea data-task="a4" data-item="3" rows="1"></textarea>
+      </li>
+      <li>
+        <span class="prompt">Use <code>an inspiring teacher</code> — talk about a real one</span>
+        <textarea data-task="a4" data-item="4" rows="1"></textarea>
+      </li>
+      <li>
+        <span class="prompt">Use <code>a bit over-the-top</code></span>
+        <textarea data-task="a4" data-item="5" rows="1"></textarea>
+      </li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>A4 · Variant B — personalize, new chunks <span class="pts">5 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Different chunks. Same rule — about YOUR life.</div>
+        <ol>
+          <li><span class="prompt">Use <code>astonishing</code> — someone's achievement or fact</span><textarea data-task="a4b" data-item="1" rows="1"></textarea></li>
+          <li><span class="prompt">Use <code>background noise</code> — where you find it distracting</span><textarea data-task="a4b" data-item="2" rows="1"></textarea></li>
+          <li><span class="prompt">Use <code>on demand</code> — how you watch things now</span><textarea data-task="a4b" data-item="3" rows="1"></textarea></li>
+          <li><span class="prompt">Use <code>burst into tears</code> — a moment you did</span><textarea data-task="a4b" data-item="4" rows="1"></textarea></li>
+          <li><span class="prompt">Use <code>an uplifting story</code> — something that lifted your mood</span><textarea data-task="a4b" data-item="5" rows="1"></textarea></li>
+        </ol>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- SECTION B -->
+<section class="card">
+  <h2><span class="sec-num">B</span> Plots <span class="points-total">25 pts</span></h2>
+
+  <h3>B1 · Fill the box-office story <span class="task-tag">Apply</span><span class="pts">10 pts</span></h3>
+  <div class="task">
+    <div class="instruction">One chunk per blank. From the bank. Type exactly.</div>
+    <div class="bank"><strong>Bank</strong>
+      <code>an adaptation of</code> <code>an amazing cast</code> <code>cast as</code>
+      <code>a smash hit</code> <code>a sequel to</code> <code>a prestigious award</code>
+      <code>all-time favourite</code> <code>reliant on</code> <code>driven by</code>
+      <code>the plot unfolds</code>
+    </div>
+    <p style="line-height:2.1;font-size:14.5px;">
+      The new film <em>Nightlands</em> is <input type="text" class="inline" data-task="b1" data-item="1" data-answer="an adaptation of"> the graphic novel of the same name. It has <input type="text" class="inline" data-task="b1" data-item="2" data-answer="an amazing cast"> — Tilda Swinton is <input type="text" class="inline" data-task="b1" data-item="3" data-answer="cast as"> the villain. As <input type="text" class="inline" data-task="b1" data-item="4" data-answer="the plot unfolds">, the audience realises nothing is what it seems. The soundtrack became <input type="text" class="inline" data-task="b1" data-item="5" data-answer="a smash hit"> before the film even opened. The studio has already announced <input type="text" class="inline" data-task="b1" data-item="6" data-answer="a sequel to"> it. The director previously won <input type="text" class="inline" data-task="b1" data-item="7" data-answer="a prestigious award"> at Cannes, and calls this his <input type="text" class="inline" data-task="b1" data-item="8" data-answer="all-time favourite"> project. He admits the industry is now heavily <input type="text" class="inline" data-task="b1" data-item="9" data-answer="reliant on"> streaming numbers and largely <input type="text" class="inline" data-task="b1" data-item="10" data-answer="driven by"> algorithms rather than critics.
+    </p>
+  </div>
+
+  <details class="variant">
+    <summary>B1 · Variant B — new box-office story, different chunks <span class="pts">10 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Second story, ten new plot chunks.</div>
+        <div class="bank"><strong>Bank</strong>
+          <code>revolves around</code> <code>twists and turns</code> <code>tension builds</code>
+          <code>tackle</code> <code>the tip of the iceberg</code> <code>sharp criticism</code>
+          <code>a box office hit</code> <code>took</code> <code>a streaming service</code>
+          <code>common ground</code>
+        </div>
+        <p style="line-height:2.1;font-size:14.5px;">
+          The new drama <em>Inheritance</em> <input type="text" class="inline" data-task="b1b" data-item="1" data-answer="revolves around"> three siblings fighting over their late mother's estate. The plot is full of <input type="text" class="inline" data-task="b1b" data-item="2" data-answer="twists and turns"> — every reveal changes the picture. As <input type="text" class="inline" data-task="b1b" data-item="3" data-answer="tension builds"> toward the final act, the audience is glued. The director tries to <input type="text" class="inline" data-task="b1b" data-item="4" data-answer="tackle"> questions of class and greed. The attitudes on display are shown to be <input type="text" class="inline" data-task="b1b" data-item="5" data-answer="the tip of the iceberg"> of a wider social problem. The film received <input type="text" class="inline" data-task="b1b" data-item="6" data-answer="sharp criticism"> from conservative reviewers, but sold out in every theatre — it's <input type="text" class="inline" data-task="b1b" data-item="7" data-answer="a box office hit">. It <input type="text" class="inline" data-task="b1b" data-item="8" data-answer="took"> £45 million in its first week alone. Meanwhile <input type="text" class="inline" data-task="b1b" data-item="9" data-answer="a streaming service"> already fought hard for the digital rights. In the end, the siblings slowly find <input type="text" class="inline" data-task="b1b" data-item="10" data-answer="common ground">.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <h3>B2 · Preposition traps <span class="task-tag">Evaluate</span><span class="pts">6 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Type the ONE correct preposition. These are the traps students lose points on all the time — go slowly.</div>
+    <div class="trap-warn">⚠ At least two of these will feel "obvious" and be wrong. Read the whole phrase before deciding.</div>
+    <ol>
+      <li>The plot revolves <input type="text" class="inline" data-task="b2" data-item="1" data-answer="around" placeholder="prep"> a young detective.</li>
+      <li>She was cast <input type="text" class="inline" data-task="b2" data-item="2" data-answer="as" placeholder="prep"> the queen in the new adaptation.</li>
+      <li>The book briefly touches <input type="text" class="inline" data-task="b2" data-item="3" data-answer="on" placeholder="prep"> mental health.</li>
+      <li>They're planning a sequel <input type="text" class="inline" data-task="b2" data-item="4" data-answer="to" placeholder="prep"> the first film.</li>
+      <li>The film took £300 million <input type="text" class="inline" data-task="b2" data-item="5" data-answer="at" placeholder="prep"> the box office.</li>
+      <li>Modern studios are heavily reliant <input type="text" class="inline" data-task="b2" data-item="6" data-answer="on" placeholder="prep"> streaming data.</li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>B2 · Variant B — new preposition traps <span class="pts">6 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">One correct preposition per gap. Six new items.</div>
+        <ol>
+          <li>The film was adapted <input type="text" class="inline" data-task="b2b" data-item="1" data-answer="from" placeholder="prep"> a 1970s novel.</li>
+          <li>The painter depicts her subjects <input type="text" class="inline" data-task="b2b" data-item="2" data-answer="as" placeholder="prep"> saints and sinners.</li>
+          <li>His whole career was driven <input type="text" class="inline" data-task="b2b" data-item="3" data-answer="by" placeholder="prep"> a fear of failure.</li>
+          <li>She was inspired <input type="text" class="inline" data-task="b2b" data-item="4" data-answer="by" placeholder="prep"> her grandmother's stories.</li>
+          <li>The whole audience burst <input type="text" class="inline" data-task="b2b" data-item="5" data-answer="into" placeholder="prep"> laughter at the punchline.</li>
+          <li>There's something dark <input type="text" class="inline" data-task="b2b" data-item="6" data-answer="beneath" placeholder="prep"> the surface of the painting.</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <h3>B3 · Complete the collocation <span class="task-tag">Apply</span><span class="pts">5 pts</span></h3>
+  <div class="task">
+    <div class="instruction">One word missing per sentence — a strong collocate. Type it.</div>
+    <ol>
+      <li>The tension <input type="text" class="inline" data-task="b3" data-item="1" data-answer="builds" placeholder="verb"> throughout the film.</li>
+      <li>The novel is a sharp <input type="text" class="inline" data-task="b3" data-item="2" data-answer="satire" placeholder="noun"> on modern politics.</li>
+      <li>The book has clever twists and <input type="text" class="inline" data-task="b3" data-item="3" data-answer="turns" placeholder="noun">.</li>
+      <li>Every director dreams of winning <input type="text" class="inline" data-task="b3" data-item="4" data-answer="a prestigious" placeholder="adj+article"> award.</li>
+      <li>They want to <input type="text" class="inline" data-task="b3" data-item="5" data-answer="tackle" placeholder="verb"> the problem of low-budget productions.</li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>B3 · Variant B — new collocations to complete <span class="pts">5 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Type the missing strong collocate.</div>
+        <ol>
+          <li>There was a really <input type="text" class="inline" data-task="b3b" data-item="1" data-answer="tense" placeholder="adj"> atmosphere in the room.</li>
+          <li>The film's <input type="text" class="inline" data-task="b3b" data-item="2" data-answer="underlying" placeholder="adj"> message is about hope.</li>
+          <li>Great actors can find <input type="text" class="inline" data-task="b3b" data-item="3" data-answer="common" placeholder="adj"> ground with any script.</li>
+          <li>She has a deep <input type="text" class="inline" data-task="b3b" data-item="4" data-answer="desire" placeholder="noun"> to travel the world.</li>
+          <li>The whole novel is <input type="text" class="inline" data-task="b3b" data-item="5" data-answer="open to" placeholder="__ __"> interpretation — no single right reading.</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <h3>B4 · Two truths and a lie <span class="task-tag">Create</span><span class="pts">4 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Write 3 statements about a film you've watched. Two must be true, one must be a lie. Each statement must use a DIFFERENT Section B chunk (not from any previous task). Teacher guesses the lie.</div>
+    <ol>
+      <li><span class="prompt">Truth or lie #1:</span><textarea data-task="b4" data-item="1" rows="2" placeholder="e.g. This film revolves around..."></textarea></li>
+      <li><span class="prompt">Truth or lie #2:</span><textarea data-task="b4" data-item="2" rows="2"></textarea></li>
+      <li><span class="prompt">Truth or lie #3:</span><textarea data-task="b4" data-item="3" rows="2"></textarea></li>
+    </ol>
+    <p style="font-size:12px;color:var(--muted);">Scoring: 1 pt per correct chunk used + 1 pt if teacher can't spot the lie.</p>
+  </div>
+</section>
+
+<!-- SECTION C -->
+<section class="card">
+  <h2><span class="sec-num">C</span> Talking about pictures <span class="points-total">20 pts</span></h2>
+
+  <h3>C1 · Fill the art critique <span class="task-tag">Apply</span><span class="pts">8 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Fill the gaps with chunks from the bank.</div>
+    <div class="bank"><strong>Bank</strong>
+      <code>abstract</code> <code>in the foreground</code> <code>atmospheric</code>
+      <code>a subtle</code> <code>depicts</code> <code>open to interpretation</code>
+      <code>the underlying message</code> <code>domestic</code>
+    </div>
+    <p style="line-height:2.1;font-size:14.5px;">
+      Hopper's <em>Room in Brooklyn</em> is a quiet, <input type="text" class="inline" data-task="c1" data-item="1" data-answer="domestic"> scene. <input type="text" class="inline" data-task="c1" data-item="2" data-answer="In the foreground">, a woman sits alone by a window. The painting <input type="text" class="inline" data-task="c1" data-item="3" data-answer="depicts"> loneliness without ever showing a face. The whole canvas is bathed in <input type="text" class="inline" data-task="c1" data-item="4" data-answer="a subtle"> yellow light. It's not <input type="text" class="inline" data-task="c1" data-item="5" data-answer="abstract"> — you can see everything clearly — but it's completely <input type="text" class="inline" data-task="c1" data-item="6" data-answer="open to interpretation">. Some viewers see peace, others isolation. For me, <input type="text" class="inline" data-task="c1" data-item="7" data-answer="the underlying message"> is about how modern life quietly separates us. The overall mood is deeply <input type="text" class="inline" data-task="c1" data-item="8" data-answer="atmospheric">.
+    </p>
+  </div>
+
+  <details class="variant">
+    <summary>C1 · Variant B — Kahlo self-portrait analysis <span class="pts">8 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Different painting, different chunks.</div>
+        <div class="bank"><strong>Bank</strong>
+          <code>visual</code> <code>in the foreground</code> <code>depicts</code>
+          <code>subtle</code> <code>interpretation</code> <code>conventional</code>
+          <code>visual clue</code> <code>dramatic</code>
+        </div>
+        <p style="line-height:2.1;font-size:14.5px;">
+          Kahlo's self-portrait is fiercely <input type="text" class="inline" data-task="c1b" data-item="1" data-answer="visual"> storytelling. Her face sits <input type="text" class="inline" data-task="c1b" data-item="2" data-answer="in the foreground">, almost too close for comfort. She <input type="text" class="inline" data-task="c1b" data-item="3" data-answer="depicts"> herself as both strong and wounded. The colours are anything but <input type="text" class="inline" data-task="c1b" data-item="4" data-answer="subtle"> — bold reds, greens, gold. The image is open to endless <input type="text" class="inline" data-task="c1b" data-item="5" data-answer="interpretation">. Her earlier work was more <input type="text" class="inline" data-task="c1b" data-item="6" data-answer="conventional">; this one is a raw challenge to that tradition. Every symbol in the frame is a deliberate <input type="text" class="inline" data-task="c1b" data-item="7" data-answer="visual clue">. The whole canvas is loud, <input type="text" class="inline" data-task="c1b" data-item="8" data-answer="dramatic"> and impossible to ignore.
+        </p>
+      </div>
+    </div>
+  </details>
+
+  <h3>C2 · Which is WRONG? <span class="task-tag">Evaluate</span><span class="pts">4 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Opposite of "which works". Find the sentence that does NOT work — the collocation is broken or wrong.</div>
+    <div class="trap-warn">⚠ Trick: some sentences look weird but are actually fine. Others look normal but the collocation is broken.</div>
+    <ol>
+      <li>
+        <div class="choice">
+          <label><input type="radio" name="c2-1" value="ok"><span>a heated debate</span></label>
+          <label><input type="radio" name="c2-1" value="ok"><span>a heated argument</span></label>
+          <label><input type="radio" name="c2-1" value="ok"><span>a heated discussion</span></label>
+          <label><input type="radio" name="c2-1" value="wrong" data-task="c2" data-item="1"><span>a heated silence</span></label>
+        </div>
+      </li>
+      <li>
+        <div class="choice">
+          <label><input type="radio" name="c2-2" value="ok"><span>I got the impression that she was tired.</span></label>
+          <label><input type="radio" name="c2-2" value="wrong" data-task="c2" data-item="2"><span>I got the impression as she was tired.</span></label>
+          <label><input type="radio" name="c2-2" value="ok"><span>She left me with a vivid impression.</span></label>
+          <label><input type="radio" name="c2-2" value="ok"><span>He gave me the wrong impression.</span></label>
+        </div>
+      </li>
+      <li>
+        <div class="choice">
+          <label><input type="radio" name="c2-3" value="ok"><span>The painting depicts a woman as strong and independent.</span></label>
+          <label><input type="radio" name="c2-3" value="ok"><span>The novel depicts life in wartime London.</span></label>
+          <label><input type="radio" name="c2-3" value="wrong" data-task="c2" data-item="3"><span>The song depicts sadness.</span></label>
+          <label><input type="radio" name="c2-3" value="ok"><span>He is depicted as a tragic hero.</span></label>
+        </div>
+      </li>
+      <li>
+        <div class="choice">
+          <label><input type="radio" name="c2-4" value="ok"><span>a subtle colour</span></label>
+          <label><input type="radio" name="c2-4" value="ok"><span>a subtle flavour</span></label>
+          <label><input type="radio" name="c2-4" value="ok"><span>a subtle difference</span></label>
+          <label><input type="radio" name="c2-4" value="wrong" data-task="c2" data-item="4"><span>a subtle shout</span></label>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>C2 · Variant B — new which-is-wrong sets <span class="pts">4 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Find the sentence where the collocation is broken.</div>
+        <ol>
+          <li>
+            <span class="prompt"><u>compose</u></span>
+            <div class="choice">
+              <label><input type="radio" name="c2b-1" value="ok"><span>compose music</span></label>
+              <label><input type="radio" name="c2b-1" value="ok"><span>compose a letter</span></label>
+              <label><input type="radio" name="c2b-1" value="ok"><span>compose yourself</span></label>
+              <label><input type="radio" name="c2b-1" value="wrong" data-task="c2b" data-item="1"><span>compose your dinner</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt"><u>disrupt</u></span>
+            <div class="choice">
+              <label><input type="radio" name="c2b-2" value="ok"><span>disrupt the meeting</span></label>
+              <label><input type="radio" name="c2b-2" value="ok"><span>disrupt an industry</span></label>
+              <label><input type="radio" name="c2b-2" value="ok"><span>disrupt sleep</span></label>
+              <label><input type="radio" name="c2b-2" value="wrong" data-task="c2b" data-item="2"><span>disrupt happiness</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt"><u>atmospheric</u></span>
+            <div class="choice">
+              <label><input type="radio" name="c2b-3" value="ok"><span>atmospheric music</span></label>
+              <label><input type="radio" name="c2b-3" value="ok"><span>atmospheric lighting</span></label>
+              <label><input type="radio" name="c2b-3" value="ok"><span>atmospheric novel</span></label>
+              <label><input type="radio" name="c2b-3" value="wrong" data-task="c2b" data-item="3"><span>atmospheric anger</span></label>
+            </div>
+          </li>
+          <li>
+            <span class="prompt"><u>open to interpretation</u></span>
+            <div class="choice">
+              <label><input type="radio" name="c2b-4" value="ok"><span>The painting is open to interpretation.</span></label>
+              <label><input type="radio" name="c2b-4" value="ok"><span>The rules are open to interpretation.</span></label>
+              <label><input type="radio" name="c2b-4" value="ok"><span>The novel is open to interpretation.</span></label>
+              <label><input type="radio" name="c2b-4" value="wrong" data-task="c2b" data-item="4"><span>The math problem is open to interpretation.</span></label>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <h3>C3 · Describe a real image <span class="task-tag">Create</span><span class="pts">8 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Open your camera roll or Google an image of a painting/photo. Write 5 sentences describing it. Use 5 DIFFERENT Section C chunks (must include: foreground + background + atmospheric/subtle/dramatic + impression + underlying/open to interpretation).</div>
+    <textarea data-task="c3" data-item="1" rows="8" placeholder="Sentence 1..."></textarea>
+  </div>
+</section>
+
+<!-- GRAMMAR CHAIN -->
+<section class="card">
+  <h2><span class="sec-num">G</span> Habits chain <span class="points-total">6 pts</span></h2>
+  <p class="sec-desc">Six sentences, six habit patterns. Each pattern used EXACTLY once. No repeats.</p>
+  <div class="task">
+    <div class="instruction">Rewrite each sentence using ONE habit pattern from the box. You must use each pattern once — after you use it, cross it off mentally. If you repeat a pattern, that item is 0.</div>
+    <div class="bank"><strong>Patterns — each used ONCE</strong>
+      <code>tend to</code> <code>'ll usually</code> <code>used to</code>
+      <code>would (past)</code> <code>keep -ing</code> <code>be always -ing</code>
+    </div>
+    <ol>
+      <li><span class="prompt">I read before bed most nights.</span><textarea data-task="g" data-item="1" rows="1"></textarea></li>
+      <li><span class="prompt">She constantly interrupts people mid-sentence. (Annoyed tone.)</span><textarea data-task="g" data-item="2" rows="1"></textarea></li>
+      <li><span class="prompt">When I was 10, I visited my grandma every summer.</span><textarea data-task="g" data-item="3" rows="1"></textarea></li>
+      <li><span class="prompt">He complains about his job over and over — every dinner.</span><textarea data-task="g" data-item="4" rows="1"></textarea></li>
+      <li><span class="prompt">I played tennis at university, but not anymore.</span><textarea data-task="g" data-item="5" rows="1"></textarea></li>
+      <li><span class="prompt">On Sundays I typically sleep in and cook a proper breakfast.</span><textarea data-task="g" data-item="6" rows="1"></textarea></li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>G · Variant B — new habits, same 6 patterns <span class="pts">6 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Same 6 patterns, new sentences. Each pattern used ONCE.</div>
+        <div class="bank"><strong>Patterns</strong>
+          <code>tend to</code> <code>'ll usually</code> <code>used to</code>
+          <code>would (past)</code> <code>keep -ing</code> <code>be always -ing</code>
+        </div>
+        <ol>
+          <li><span class="prompt">I check my email far too many times a day. (Annoying tone.)</span><textarea data-task="gb" data-item="1" rows="1"></textarea></li>
+          <li><span class="prompt">She skipped breakfast every morning back in university.</span><textarea data-task="gb" data-item="2" rows="1"></textarea></li>
+          <li><span class="prompt">When I lived in Paris, I walked home along the Seine every Friday.</span><textarea data-task="gb" data-item="3" rows="1"></textarea></li>
+          <li><span class="prompt">He forgets to reply to messages over and over.</span><textarea data-task="gb" data-item="4" rows="1"></textarea></li>
+          <li><span class="prompt">I don't usually go to the gym in the morning.</span><textarea data-task="gb" data-item="5" rows="1"></textarea></li>
+          <li><span class="prompt">On Fridays I meet my friends for dinner without fail.</span><textarea data-task="gb" data-item="6" rows="1"></textarea></li>
+        </ol>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- DEVELOPING CONVERSATIONS -->
+<section class="card">
+  <h2><span class="sec-num">DC</span> Disagreeing politely <span class="points-total">10 pts</span></h2>
+  <p class="sec-desc">Functional language of Unit 1. This block appears in every unit — different function each time.</p>
+
+  <h3>DC1 · Push back politely <span class="task-tag">Apply</span><span class="pts">10 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Reply to each opinion with a 2-sentence polite disagreement. Rule: DIFFERENT opener each time. Don't repeat.</div>
+    <div class="bank"><strong>Openers to rotate</strong>
+      <code>I see what you mean, but…</code> <code>I'm not sure I agree.</code>
+      <code>Up to a point, but…</code> <code>I take your point, but…</code>
+      <code>Yes, but on the other hand…</code> <code>That's true, although…</code>
+      <code>I can see why you'd say that, but…</code>
+    </div>
+    <ol>
+      <li><span class="prompt">"Marvel films are basically all the same. Nothing creative anymore."</span><textarea data-task="dc1" data-item="1" rows="2"></textarea></li>
+      <li><span class="prompt">"Streaming services have killed real cinema."</span><textarea data-task="dc1" data-item="2" rows="2"></textarea></li>
+      <li><span class="prompt">"Books are always better than film adaptations."</span><textarea data-task="dc1" data-item="3" rows="2"></textarea></li>
+      <li><span class="prompt">"There's too much violence in TV series these days."</span><textarea data-task="dc1" data-item="4" rows="2"></textarea></li>
+      <li><span class="prompt">"AI-generated art isn't real art — anyone can prompt a machine."</span><textarea data-task="dc1" data-item="5" rows="2"></textarea></li>
+    </ol>
+  </div>
+
+  <details class="variant">
+    <summary>DC1 · Variant B — new opinions to push back on <span class="pts">10 pts</span></summary>
+    <div class="variant-body">
+      <div class="task" style="margin:0;">
+        <div class="instruction">Five new hot takes. Different opener each. 2 sentences each.</div>
+        <ol>
+          <li><span class="prompt">"TikTok is destroying attention spans."</span><textarea data-task="dc1b" data-item="1" rows="2"></textarea></li>
+          <li><span class="prompt">"Podcasts are just the new radio — nothing original about them."</span><textarea data-task="dc1b" data-item="2" rows="2"></textarea></li>
+          <li><span class="prompt">"Foreign-language films should be dubbed, not subtitled."</span><textarea data-task="dc1b" data-item="3" rows="2"></textarea></li>
+          <li><span class="prompt">"Reading a book is always better than listening to the audiobook."</span><textarea data-task="dc1b" data-item="4" rows="2"></textarea></li>
+          <li><span class="prompt">"Museums are boring — VR will replace them in a decade."</span><textarea data-task="dc1b" data-item="5" rows="2"></textarea></li>
+        </ol>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- SPEAKING -->
+<section class="card">
+  <h2><span class="sec-num">S</span> Speaking output <span class="points-total">16 pts</span></h2>
+
+  <h3>S1 · 2-minute monologue <span class="task-tag">Create</span><span class="pts">16 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Recommend a film or series to a friend with different taste. 2 minutes. Record on phone. Listen back. Then check the boxes.</div>
+    <div class="bank"><strong>Required — use at least 8 of these 12 chunks</strong>
+      <code>on demand</code> <code>a big-budget / low-budget</code> <code>gripping</code>
+      <code>a plot twist</code> <code>the plot revolves around</code> <code>an all-time favourite</code>
+      <code>an adaptation of</code> <code>the underlying message</code> <code>touches on</code>
+      <code>a bit over-the-top</code> <code>an amazing cast</code> <code>uplifting / disturbing</code>
+    </div>
+    <div class="bank"><strong>Plus — use at least 2 habit patterns</strong>
+      <code>tend to</code> <code>used to</code> <code>would</code> <code>keep -ing</code> <code>be always -ing</code>
+    </div>
+    <p><strong>Teacher / self checks after listening:</strong></p>
+    <div class="criteria">
+      <label><input type="checkbox" data-task="s1" data-item="fluency"> Fluency — full 2 min, no long pauses</label>
+      <label><input type="checkbox" data-task="s1" data-item="chunks"> Chunk use — 8+ chunks actually used</label>
+      <label><input type="checkbox" data-task="s1" data-item="grammar"> Grammar accuracy — habits patterns correct</label>
+      <label><input type="checkbox" data-task="s1" data-item="pronunciation"> Pronunciation — key chunks clear</label>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;">Each box = 4 pts.</p>
+  </div>
+</section>
+
+<!-- CYCLE SWEEP -->
+<section class="card">
+  <h2><span class="sec-num">↻</span> Cycle Sweep <span class="points-total">45 pts</span></h2>
+  <p class="sec-desc">Rapid mop-up. Every priority chunk from the reference that hasn't appeared in previous tasks lands here at least once. Three rounds — Round 1 = mostly Section A leftovers, Round 2 = Section B, Round 3 = Section C.</p>
+
+  <h3>Round 1 · Section A leftovers <span class="task-tag">Apply</span><span class="pts">15 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Fill each gap with ONE word or short chunk. Watch spelling and form (adj/noun/verb).</div>
+    <ol>
+      <li>Her speed of learning always <input type="text" class="inline" data-task="cy1" data-item="1" data-answer="astonishes" placeholder="verb"> me.</li>
+      <li>The house is <input type="text" class="inline" data-task="cy1" data-item="2" data-answer="astonishingly" placeholder="adv"> quiet for a Saturday.</li>
+      <li>She was completely <input type="text" class="inline" data-task="cy1" data-item="3" data-answer="glued" placeholder="past-p adj"> to her phone at dinner.</li>
+      <li>He inherited a passion for reading — he's a real book <input type="text" class="inline" data-task="cy1" data-item="4" data-answer="addict" placeholder="noun">.</li>
+      <li>My son can't <input type="text" class="inline" data-task="cy1" data-item="5" data-answer="control" placeholder="verb"> how much time he spends gaming.</li>
+      <li>Finally, the situation is <input type="text" class="inline" data-task="cy1" data-item="6" data-answer="under control" placeholder="prep+n"> again.</li>
+      <li>She was <input type="text" class="inline" data-task="cy1" data-item="7" data-answer="close to tears" placeholder="close to __"> during the speech.</li>
+      <li>He smiled <input type="text" class="inline" data-task="cy1" data-item="8" data-answer="tearfully" placeholder="adv"> at the old photo.</li>
+      <li>Sara <input type="text" class="inline" data-task="cy1" data-item="9" data-answer="dreads" placeholder="verb"> Mondays — she starts complaining Sunday night.</li>
+      <li>What was your <input type="text" class="inline" data-task="cy1" data-item="10" data-answer="inspiration" placeholder="noun"> for this painting?</li>
+      <li>That was an <input type="text" class="inline" data-task="cy1" data-item="11" data-answer="inspired" placeholder="adj"> idea — pure genius.</li>
+      <li>The film was a huge <input type="text" class="inline" data-task="cy1" data-item="12" data-answer="commercial success" placeholder="commercial __"> despite bad reviews.</li>
+      <li>She's <input type="text" class="inline" data-task="cy1" data-item="13" data-answer="deeply disturbed" placeholder="deeply __"> by what she saw.</li>
+      <li>I was really <input type="text" class="inline" data-task="cy1" data-item="14" data-answer="gripped" placeholder="past-p adj"> by the story from page one.</li>
+      <li>The audience laughed with <input type="text" class="inline" data-task="cy1" data-item="15" data-answer="hilarity" placeholder="noun"> at every joke.</li>
+    </ol>
+  </div>
+
+  <h3>Round 2 · Section B leftovers <span class="task-tag">Apply</span><span class="pts">15 pts</span></h3>
+  <div class="task">
+    <div class="instruction">Same rule. One chunk per gap.</div>
+    <ol>
+      <li>Have you found any <input type="text" class="inline" data-task="cy2" data-item="1" data-answer="common ground" placeholder="2 words"> with your new roommate?</li>
+      <li>There's a strong <input type="text" class="inline" data-task="cy2" data-item="2" data-answer="desire" placeholder="noun"> among voters for change.</li>
+      <li>Everyone has a deep <input type="text" class="inline" data-task="cy2" data-item="3" data-answer="desire" placeholder="noun"> to be understood.</li>
+      <li><em>Casablanca</em> is a <input type="text" class="inline" data-task="cy2" data-item="4" data-answer="classic" placeholder="adj"> film — a must-watch.</li>
+      <li>Watch <em>The Godfather</em> — it's one of the great <input type="text" class="inline" data-task="cy2" data-item="5" data-answer="classics" placeholder="noun pl"> of world cinema.</li>
+      <li>Great <input type="text" class="inline" data-task="cy2" data-item="6" data-answer="graphic novels" placeholder="adj+noun"> combine images and story.</li>
+      <li>The film has a really <input type="text" class="inline" data-task="cy2" data-item="7" data-answer="complicated" placeholder="adj"> plot — I got lost.</li>
+      <li>He has a deep <input type="text" class="inline" data-task="cy2" data-item="8" data-answer="psychological" placeholder="adj"> need for approval.</li>
+      <li>You can't <input type="text" class="inline" data-task="cy2" data-item="9" data-answer="rely on" placeholder="verb+prep"> public transport in this city.</li>
+      <li>Their old car isn't <input type="text" class="inline" data-task="cy2" data-item="10" data-answer="reliable" placeholder="adj"> — it breaks down monthly.</li>
+      <li>Working at Google gives you real <input type="text" class="inline" data-task="cy2" data-item="11" data-answer="prestige" placeholder="noun"> in this industry.</li>
+      <li>The screenplay was <input type="text" class="inline" data-task="cy2" data-item="12" data-answer="adapted" placeholder="past verb"> from a Booker-winning novel.</li>
+      <li>The show is being <input type="text" class="inline" data-task="cy2" data-item="13" data-answer="shot" placeholder="past verb"> in Reykjavik right now.</li>
+      <li>His novel was flawed but had <input type="text" class="inline" data-task="cy2" data-item="14" data-answer="a tense atmosphere" placeholder="a __ atmosphere"> throughout.</li>
+      <li>Everyone noticed the <input type="text" class="inline" data-task="cy2" data-item="15" data-answer="sharp criticism" placeholder="adj+noun"> in her review.</li>
+    </ol>
+  </div>
+
+  <h3>Round 3 · Section C leftovers <span class="task-tag">Apply</span><span class="pts">15 pts</span></h3>
+  <div class="task">
+    <div class="instruction">One chunk per gap. Watch adverbs and adjective forms.</div>
+    <ol>
+      <li>Her instructions were <input type="text" class="inline" data-task="cy3" data-item="1" data-answer="ambiguous" placeholder="adj"> — I still don't know what to do.</li>
+      <li>Try to <input type="text" class="inline" data-task="cy3" data-item="2" data-answer="avoid ambiguity" placeholder="verb+n"> when writing legal text.</li>
+      <li>His answer was completely <input type="text" class="inline" data-task="cy3" data-item="3" data-answer="unambiguous" placeholder="adj opp."> — no room for doubt.</li>
+      <li>There's something serious <input type="text" class="inline" data-task="cy3" data-item="4" data-answer="beneath the surface" placeholder="beneath __"> of that conversation.</li>
+      <li>He's a great travel <input type="text" class="inline" data-task="cy3" data-item="5" data-answer="companion" placeholder="noun"> — always finds the best cafes.</li>
+      <li>Beethoven <input type="text" class="inline" data-task="cy3" data-item="6" data-answer="composed" placeholder="past verb"> some of his greatest works when deaf.</li>
+      <li>She had a very <input type="text" class="inline" data-task="cy3" data-item="7" data-answer="conventional" placeholder="adj"> upbringing in the suburbs.</li>
+      <li>He's known for his <input type="text" class="inline" data-task="cy3" data-item="8" data-answer="unconventional" placeholder="adj opp."> teaching style.</li>
+      <li>This news is really hard to <input type="text" class="inline" data-task="cy3" data-item="9" data-answer="digest" placeholder="verb">.</li>
+      <li>The protests <input type="text" class="inline" data-task="cy3" data-item="10" data-answer="disrupted" placeholder="past verb"> the whole meeting.</li>
+      <li>She has a <input type="text" class="inline" data-task="cy3" data-item="11" data-answer="disruptive" placeholder="adj"> influence on our team.</li>
+      <li>The situation changed <input type="text" class="inline" data-task="cy3" data-item="12" data-answer="dramatically" placeholder="adv"> overnight.</li>
+      <li>Her paintings depict Scottish <input type="text" class="inline" data-task="cy3" data-item="13" data-answer="landscapes" placeholder="noun pl"> beautifully.</li>
+      <li>Can you <input type="text" class="inline" data-task="cy3" data-item="14" data-answer="visualize" placeholder="verb"> how the room will look after painting?</li>
+      <li>The colours are <input type="text" class="inline" data-task="cy3" data-item="15" data-answer="subtly" placeholder="adv"> different — you have to look twice.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- SPEED ROUND -->
+<section class="card">
+  <h2><span class="sec-num">🔥</span> Speed round <span class="warn-tag">bonus</span></h2>
+  <p class="sec-desc">60 seconds. Type as many Unit 01 chunks as you can, comma-separated. No hint, no bank. Bonus points count separately.</p>
+  <div class="speed-round">
+    <div class="timer-display" id="speed-timer">60</div>
+    <div style="text-align:center;margin-bottom:12px;">
+      <button type="button" class="btn-timer" id="speed-start">Start 60 sec</button>
+    </div>
+    <textarea data-task="speed" data-item="1" id="speed-textarea" rows="4" placeholder="Type chunks separated by commas — as many as you can. e.g. gripping, catchy tune, revolves around, ..." disabled></textarea>
+    <div class="speed-count" id="speed-count">0 chunks typed</div>
+  </div>
+</section>
+
+<!-- SUBMIT -->
+<div class="submit-zone">
+  <button class="btn-submit" type="submit">Submit &amp; get results</button>
+  <div style="margin-top:14px;">
+    <button type="button" class="btn-secondary" onclick="window.print()">Print</button>
+    <button type="button" class="btn-secondary" onclick="clearAll()">Clear all</button>
+  </div>
+</div>
+
+</form>
+
+<!-- DASHBOARD -->
+<section class="card" id="dashboard">
+  <div class="dash-hero">
+    <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px;">Your Unit 01 result</div>
+    <div class="score-big" id="score-num">0</div>
+    <div class="score-total">/ <span id="max-points">237</span> total points<span id="speed-bonus"></span> · <span id="score-pct">0%</span></div>
+
+    <div class="breakdown" id="breakdown"></div>
+
+    <div class="rubric-verdict" id="verdict">
+      <h3 id="verdict-title">—</h3>
+      <p id="verdict-body">—</p>
+    </div>
+
+    <div class="spaced-rep-list" id="spaced-rep">
+      <h3>🎯 Spaced Repetition List</h3>
+      <p>Everything you marked ✗ in the reference plus every item you missed in auto-checked tasks. Review these in 2 days, then 7, then 30.</p>
+      <div class="chip-grid" id="spaced-chips"></div>
+    </div>
+
+    <p style="margin-top:20px;font-size:12px;color:var(--muted);">Auto-scored: W, A1, A2, A3, B1, B2, B3, C1, C2, S1. Production (A4, B4, C3, G, DC1) provisional by completion — teacher confirms during review.</p>
+  </div>
+</section>
+
+<script>
+  // ==== INTERACTIVE REFERENCE (tri-state chips) ====
+  const chips = document.querySelectorAll('.chip-grid .chip');
+  chips.forEach(c => {
+    c.addEventListener('click', () => {
+      const s = c.getAttribute('data-state');
+      if (!s) c.setAttribute('data-state', 'known');
+      else if (s === 'known') c.setAttribute('data-state', 'unknown');
+      else c.removeAttribute('data-state');
+      updateRefCount();
+    });
+  });
+  function updateRefCount() {
+    const unknown = document.querySelectorAll('.chip[data-state="unknown"]').length;
+    const known = document.querySelectorAll('.chip[data-state="known"]').length;
+    document.getElementById('ref-count').textContent = `${unknown} marked unknown · ${known} known`;
+  }
+
+  // Ref tabs
+  document.querySelectorAll('.ref-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.ref-tab').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.ref-panel').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.panel).classList.add('active');
+    });
+  });
+
+  // ==== SPEED ROUND ====
+  let speedInterval = null;
+  const speedStart = document.getElementById('speed-start');
+  const speedTA = document.getElementById('speed-textarea');
+  const speedTimer = document.getElementById('speed-timer');
+  const speedCount = document.getElementById('speed-count');
+
+  speedStart.addEventListener('click', () => {
+    let t = 60;
+    speedTA.disabled = false;
+    speedTA.focus();
+    speedTimer.textContent = t;
+    speedStart.disabled = true;
+    speedStart.textContent = 'Running…';
+    if (speedInterval) clearInterval(speedInterval);
+    speedInterval = setInterval(() => {
+      t--;
+      speedTimer.textContent = t;
+      if (t <= 0) {
+        clearInterval(speedInterval);
+        speedTA.disabled = true;
+        speedStart.textContent = 'Done';
+        countSpeed();
+      }
+    }, 1000);
+  });
+  speedTA.addEventListener('input', countSpeed);
+  function countSpeed() {
+    const raw = speedTA.value.split(/[,\n;]/).map(x => x.trim()).filter(Boolean);
+    speedCount.innerHTML = `<strong>${raw.length}</strong> chunks typed`;
+  }
+
+  // ==== SCORING ====
+  function normalize(s) {
+    return (s || "").toLowerCase().trim().replace(/\s+/g," ").replace(/[.,!?;:'"]/g,"").replace(/[’‘]/g,"");
+  }
+
+  const autoAnswers = {
+    w: {1:["hilarious"], 2:["gripping"], 3:["on demand"], 4:["catchy tune", "a catchy tune"], 5:["the tip of the iceberg", "tip of the iceberg"]},
+    a1: {1:["on demand"], 2:["a remake of","remake of"], 3:["big-budget","a big-budget","big budget"], 4:["gripping","a gripping","really gripping","absolutely gripping"], 5:["in the background"], 6:["disturbing","deeply disturbing"], 7:["absolutely hilarious","hilarious"], 8:["burst into tears","in tears"], 9:["uplifting"], 10:["weird"]},
+    a3: {"1a":["inspiring"], "1b":["inspiration"], "1c":["inspired"],
+         "2a":["addicted"], "2b":["addiction"], "2c":["addictive"],
+         "3a":["disturbing"], "3b":["disturbance"], "3c":["disturbed"],
+         "4a":["astonishing"], "4b":["astonishment"], "4c":["astonished"]},
+    b1: {1:["an adaptation of","adaptation of"], 2:["an amazing cast","amazing cast"], 3:["cast as"], 4:["the plot unfolds","plot unfolds"], 5:["a smash hit","smash hit"], 6:["a sequel to","sequel to"], 7:["a prestigious award","prestigious award"], 8:["all-time favourite","all time favourite","all-time favorite","all time favorite"], 9:["reliant on"], 10:["driven by"]},
+    b2: {1:["around"], 2:["as"], 3:["on"], 4:["to"], 5:["at"], 6:["on"]},
+    b3: {1:["builds","builds up","mounts"], 2:["satire"], 3:["turns"], 4:["a prestigious"], 5:["tackle"]},
+    c1: {1:["domestic","a domestic"], 2:["in the foreground"], 3:["depicts"], 4:["a subtle","subtle"], 5:["abstract"], 6:["open to interpretation"], 7:["the underlying message","underlying message"], 8:["atmospheric"]},
+    cy1: {1:["astonishes"], 2:["astonishingly"], 3:["glued"], 4:["addict"], 5:["control"], 6:["under control"], 7:["close to tears"], 8:["tearfully"], 9:["dreads"], 10:["inspiration"], 11:["inspired","an inspired"], 12:["commercial success","a commercial success"], 13:["deeply disturbed"], 14:["gripped"], 15:["hilarity"]},
+    cy2: {1:["common ground"], 2:["desire","strong desire"], 3:["desire"], 4:["classic","a classic"], 5:["classics"], 6:["graphic novels"], 7:["complicated"], 8:["psychological"], 9:["rely on"], 10:["reliable"], 11:["prestige"], 12:["adapted"], 13:["shot"], 14:["a tense atmosphere","tense atmosphere"], 15:["sharp criticism"]},
+    cy3: {1:["ambiguous"], 2:["avoid ambiguity"], 3:["unambiguous"], 4:["beneath the surface"], 5:["companion"], 6:["composed"], 7:["conventional"], 8:["unconventional"], 9:["digest"], 10:["disrupted"], 11:["disruptive"], 12:["dramatically"], 13:["landscapes"], 14:["visualize","visualise"], 15:["subtly"]},
+
+    // === VARIANT B ANSWERS ===
+    wb: {1:["dreadful"], 2:["uplifting"], 3:["astonishing"], 4:["touches on"], 5:["the underlying message","underlying message"]},
+    a1b: {1:["addicted to"], 2:["absolutely gripping"], 3:["a catchy tune","catchy tune"], 4:["background music"], 5:["an inspiring","inspiring"], 6:["dreadful"], 7:["glued to"], 8:["a bit over-the-top","a bit over the top","over-the-top","OTT"], 9:["in tears"], 10:["inspired","an inspired"]},
+    a3b: {"1a":["adapt"], "1b":["adaptation"], "1c":["adapted"],
+          "2a":["depict"], "2b":["depiction"], "2c":["depicted"],
+          "3a":["disrupt"], "3b":["disruption"], "3c":["disruptive"],
+          "4a":["interpret"], "4b":["interpretation"], "4c":["interpretive","interpretative"]},
+    b1b: {1:["revolves around"], 2:["twists and turns"], 3:["tension builds"], 4:["tackle"], 5:["the tip of the iceberg","tip of the iceberg","just the tip of the iceberg"], 6:["sharp criticism"], 7:["a box office hit","box office hit"], 8:["took"], 9:["a streaming service","streaming service"], 10:["common ground"]},
+    b2b: {1:["from"], 2:["as"], 3:["by"], 4:["by"], 5:["into"], 6:["beneath"]},
+    b3b: {1:["tense"], 2:["underlying"], 3:["common"], 4:["desire"], 5:["open to"]},
+    c1b: {1:["visual"], 2:["in the foreground"], 3:["depicts"], 4:["subtle"], 5:["interpretation"], 6:["conventional"], 7:["visual clue","a visual clue"], 8:["dramatic"]}
+  };
+
+  function scoreGaps(task) {
+    const map = autoAnswers[task];
+    let got = 0, total = 0;
+    for (const [i, accepts] of Object.entries(map)) {
+      total++;
+      const el = document.querySelector(`input[data-task="${task}"][data-item="${i}"]`);
+      if (!el) continue;
+      const val = normalize(el.value);
+      const ok = accepts.some(a => normalize(a) === val);
+      if (ok) { got++; el.classList.add('correct'); el.classList.remove('wrong'); }
+      else if (val.length > 0) { el.classList.add('wrong'); el.classList.remove('correct'); }
+    }
+    return { got, total };
+  }
+
+  function scoreRadios(task, count) {
+    let got = 0;
+    for (let i = 1; i <= count; i++) {
+      const r = document.querySelector(`input[type="radio"][data-task="${task}"][data-item="${i}"]`);
+      if (r && r.checked) got++;
+    }
+    return { got, total: count };
+  }
+
+  function countFilled(task, expectedItems, minWords) {
+    minWords = minWords || 4;
+    let filled = 0;
+    for (let i = 1; i <= expectedItems; i++) {
+      const el = document.querySelector(`textarea[data-task="${task}"][data-item="${i}"]`);
+      if (el && el.value.trim().split(/\s+/).filter(Boolean).length >= minWords) filled++;
+    }
+    return filled;
+  }
+
+  function wordsInTextarea(task, item) {
+    const el = document.querySelector(`textarea[data-task="${task}"][data-item="${item}"]`);
+    if (!el) return 0;
+    return el.value.trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  function scoreSpeaking() {
+    const boxes = document.querySelectorAll('input[type="checkbox"][data-task="s1"]');
+    let checked = 0;
+    boxes.forEach(b => { if (b.checked) checked++; });
+    return { got: checked * 4, total: 16 };
+  }
+
+  function scoreAll() {
+    // Auto
+    const w = scoreGaps('w');       // 5
+    const a1 = scoreGaps('a1');     // 10
+    const a2 = scoreRadios('a2', 5); // 5
+    const a3 = scoreGaps('a3');     // count /12 → convert to /8
+    const a3_score = Math.round((a3.got / 12) * 8);
+    const b1 = scoreGaps('b1');     // 10
+    const b2 = scoreGaps('b2');     // 6
+    const b3 = scoreGaps('b3');     // 5
+    const c1 = scoreGaps('c1');     // 8
+    const c2 = scoreRadios('c2', 4); // 4
+    const cy1 = scoreGaps('cy1');   // 15
+    const cy2 = scoreGaps('cy2');   // 15
+    const cy3 = scoreGaps('cy3');   // 15
+
+    // Variant B (auto)
+    const wb = scoreGaps('wb');       // 5
+    const a1b = scoreGaps('a1b');     // 10
+    const a2b = scoreRadios('a2b', 5); // 5
+    const a3b = scoreGaps('a3b');     // /12 → /8
+    const a3b_score = Math.round((a3b.got / 12) * 8);
+    const b1b = scoreGaps('b1b');     // 10
+    const b2b = scoreGaps('b2b');     // 6
+    const b3b = scoreGaps('b3b');     // 5
+    const c1b = scoreGaps('c1b');     // 8
+    const c2b = scoreRadios('c2b', 4); // 4
+
+    // Variant B production
+    const a4b_filled = countFilled('a4b', 5, 5);
+    const a4b_score = a4b_filled;
+    const gb_filled = countFilled('gb', 6, 4);
+    const gb_score = gb_filled;
+    const dc1b_filled = countFilled('dc1b', 5, 5);
+    const dc1b_score = dc1b_filled * 2;
+
+    const variantB_total = wb.got + a1b.got + a2b.got + a3b_score + a4b_score
+                         + b1b.got + b2b.got + b3b.got
+                         + c1b.got + c2b.got
+                         + gb_score + dc1b_score;
+
+    // Production (teacher-confirmed, provisional by completion)
+    const a4_filled = countFilled('a4', 5, 5);
+    const a4_score = a4_filled;         // /5
+    const b4_filled = countFilled('b4', 3, 5);
+    const b4_score = Math.round((b4_filled / 3) * 4); // /4
+    const c3_words = wordsInTextarea('c3', 1);
+    const c3_score = Math.min(8, Math.floor(c3_words / 8)); // /8, ~64 words = full
+    const g_filled = countFilled('g', 6, 4);
+    const g_score = g_filled;            // /6
+    const dc1_filled = countFilled('dc1', 5, 5);
+    const dc1_score = dc1_filled * 2;   // /10
+
+    const speak = scoreSpeaking();      // /16
+
+    const variantA_total = w.got + a1.got + a2.got + a3_score + a4_score
+                         + b1.got + b2.got + b3.got + b4_score
+                         + c1.got + c2.got + c3_score
+                         + g_score + dc1_score + speak.got;
+    const total = variantA_total + cy1.got + cy2.got + cy3.got + variantB_total;
+
+    // Speed round bonus (not in total)
+    const speedRaw = (document.getElementById('speed-textarea').value || '').split(/[,\n;]/).map(x => x.trim()).filter(Boolean);
+    const speedBonus = speedRaw.length;
+
+    // Breakdown
+    const rows = [
+      { name: "W · Warm-up", got: w.got, max: 5, k: 'auto' },
+      { name: "A1 · Film review", got: a1.got, max: 10, k: 'auto' },
+      { name: "A2 · Odd one out", got: a2.got, max: 5, k: 'auto' },
+      { name: "A3 · Word families", got: a3_score, max: 8, k: 'auto' },
+      { name: "A4 · Personalize", got: a4_score, max: 5, k: 'prod' },
+      { name: "B1 · Box-office", got: b1.got, max: 10, k: 'auto' },
+      { name: "B2 · Preposition traps", got: b2.got, max: 6, k: 'auto' },
+      { name: "B3 · Complete colloc.", got: b3.got, max: 5, k: 'auto' },
+      { name: "B4 · Truths & lie", got: b4_score, max: 4, k: 'prod' },
+      { name: "C1 · Art critique", got: c1.got, max: 8, k: 'auto' },
+      { name: "C2 · Which is wrong", got: c2.got, max: 4, k: 'auto' },
+      { name: "C3 · Describe image", got: c3_score, max: 8, k: 'prod' },
+      { name: "Cycle R1 · A leftovers", got: cy1.got, max: 15, k: 'auto' },
+      { name: "Cycle R2 · B leftovers", got: cy2.got, max: 15, k: 'auto' },
+      { name: "Cycle R3 · C leftovers", got: cy3.got, max: 15, k: 'auto' },
+      { name: "G · Habits chain", got: g_score, max: 6, k: 'prod' },
+      { name: "DC1 · Push back", got: dc1_score, max: 10, k: 'prod' },
+      { name: "S1 · Speaking", got: speak.got, max: 16, k: 'prod' },
+      // Variant B
+      { name: "W-B · Warm-up B", got: wb.got, max: 5, k: 'B' },
+      { name: "A1-B · Review B", got: a1b.got, max: 10, k: 'B' },
+      { name: "A2-B · Odd one out B", got: a2b.got, max: 5, k: 'B' },
+      { name: "A3-B · Word families B", got: a3b_score, max: 8, k: 'B' },
+      { name: "A4-B · Personalize B", got: a4b_score, max: 5, k: 'B' },
+      { name: "B1-B · Box-office B", got: b1b.got, max: 10, k: 'B' },
+      { name: "B2-B · Prep traps B", got: b2b.got, max: 6, k: 'B' },
+      { name: "B3-B · Colloc. B", got: b3b.got, max: 5, k: 'B' },
+      { name: "C1-B · Art critique B", got: c1b.got, max: 8, k: 'B' },
+      { name: "C2-B · Which is wrong B", got: c2b.got, max: 4, k: 'B' },
+      { name: "G-B · Habits B", got: gb_score, max: 6, k: 'B' },
+      { name: "DC1-B · Push back B", got: dc1b_score, max: 10, k: 'B' }
+    ];
+
+    // Attempted max (only tasks where student actually engaged)
+    let attemptedMax = 0;
+    rows.forEach(r => {
+      // Consider "attempted" if got > 0 OR any field has content
+      // Simplification: count max of tasks that had any completion signal
+      if (r.got > 0) attemptedMax += r.max;
+    });
+    // If nothing attempted, avoid div/0
+    const pct = attemptedMax > 0 ? Math.round((total / attemptedMax) * 100) : 0;
+
+    // Render
+    document.getElementById('score-num').textContent = total;
+    document.getElementById('max-points').textContent = attemptedMax > 0 ? attemptedMax : 237;
+    document.getElementById('score-pct').textContent = pct + '%';
+    document.getElementById('speed-bonus').textContent = speedBonus ? ` · +${speedBonus} speed bonus` : '';
+    const bd = document.getElementById('breakdown');
+    bd.innerHTML = '';
+    rows.forEach(r => {
+      const el = document.createElement('div');
+      el.className = 'breakdown-item';
+      const tag = r.k === 'prod' ? ' · teacher' : (r.k === 'B' ? ' · variant B' : '');
+      el.innerHTML = `<div class="name">${r.name}${tag}</div><div class="val">${r.got}<span style="font-size:11px;color:var(--muted);font-weight:500;"> / ${r.max}</span></div>`;
+      if (r.k === 'B') el.style.background = 'rgba(201,216,226,0.4)';
+      bd.appendChild(el);
+    });
+
+    // Verdict
+    const v = document.getElementById('verdict');
+    const vt = document.getElementById('verdict-title');
+    const vb = document.getElementById('verdict-body');
+    v.className = 'rubric-verdict';
+    // Percentage-based rubric (of attempted material)
+    if (pct >= 85) {
+      v.classList.add('level-excellent');
+      vt.textContent = 'Excellent recall (85%+)';
+      vb.textContent = 'Unit is solid. Move to Unit 02 (Sightseeing). Light 7-day spaced review of items in your red list.';
+    } else if (pct >= 70) {
+      v.classList.add('level-good');
+      vt.textContent = 'Solid, minor gaps (70–84%)';
+      vb.textContent = 'Redo only sections you lost points on. Attempt Variant B for missed sections. Re-attempt Speaking in 3 days.';
+    } else if (pct >= 50) {
+      v.classList.add('level-gaps');
+      vt.textContent = 'Significant gaps (50–69%)';
+      vb.textContent = 'Full re-do of auto-checked sections + open Variant B for cross-training. Rewatch a film using target chunks. Re-test in 3 days.';
+    } else {
+      v.classList.add('level-redo');
+      vt.textContent = 'Major gaps (below 50%)';
+      vb.textContent = 'Return to Vocabulary Builder Unit 1. Re-tag the reference. Do both Variant A and Variant B. Repeat this test in 7 days.';
+    }
+
+    // === SPACED REPETITION LIST ===
+    // Combine: (a) unknown-marked chips (b) missed items in auto tasks
+    const missedChunks = new Set();
+    // From chips
+    document.querySelectorAll('.chip[data-state="unknown"]').forEach(c => missedChunks.add(c.textContent.trim()));
+    // From missed gap inputs
+    document.querySelectorAll('input.wrong').forEach(el => {
+      const t = el.getAttribute('data-task');
+      const i = el.getAttribute('data-item');
+      if (autoAnswers[t] && autoAnswers[t][i]) missedChunks.add(autoAnswers[t][i][0]);
+    });
+    // From unchecked radios in a2/c2 (never picked or picked wrong)
+    ['a2', 'c2'].forEach(t => {
+      const groups = document.querySelectorAll(`input[type="radio"][name^="${t}-"]`);
+      const seen = new Set();
+      groups.forEach(r => seen.add(r.name));
+      seen.forEach(name => {
+        const chosen = document.querySelector(`input[name="${name}"]:checked`);
+        if (!chosen) {
+          missedChunks.add(`Review: ${name.toUpperCase()} — no answer`);
+        } else if (!chosen.getAttribute('data-task')) {
+          missedChunks.add(`Review: ${name.toUpperCase()} — wrong pick`);
+        }
+      });
+    });
+
+    const chipsHost = document.getElementById('spaced-chips');
+    chipsHost.innerHTML = '';
+    if (missedChunks.size === 0) {
+      chipsHost.innerHTML = '<em style="color:var(--good);">Nothing to review — clean run.</em>';
+    } else {
+      missedChunks.forEach(chunk => {
+        const el = document.createElement('div');
+        el.className = 'chip';
+        el.textContent = chunk;
+        chipsHost.appendChild(el);
+      });
+    }
+
+    document.getElementById('dashboard').classList.add('show');
+    document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function clearAll() {
+    if (!confirm('Clear all answers and reference marks?')) return;
+    document.querySelectorAll('input[type="text"], textarea').forEach(el => { el.value = ''; el.classList.remove('correct','wrong'); });
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
+    document.querySelectorAll('.chip').forEach(c => c.removeAttribute('data-state'));
+    updateRefCount();
+    document.getElementById('dashboard').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</div>
+</body>
+</html>

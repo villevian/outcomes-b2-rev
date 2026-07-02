@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outcomes B2 — Lexical Revision System</title>
+<link rel="stylesheet" href="shared/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+<div class="session-bar" id="session-bar">
+  <div class="who"><span class="pill">Not signed in</span></div>
+  <div><a href="login.html" class="btn-secondary" style="text-decoration:none;">Sign in</a></div>
+</div>
+
+<header>
+  <div class="eyebrow">Outcomes B2 · 3rd edition · lexical approach</div>
+  <h1>Lexical Revision System</h1>
+  <p class="subtitle">
+    16 units — each with a Student page (live 120-min lesson) and a Teacher page (answer keys, methodology notes, rubrics).
+    Progress, submissions and Leitner reviews are stored per-student in Supabase.
+  </p>
+</header>
+
+<section>
+  <h2>Method in one paragraph</h2>
+  <div class="card">
+    <p style="margin:0; font-size:15px; color:#333; line-height:1.7;">
+      Chunks-first, grammar-as-a-servant (Dellar &amp; Walkley, Lewis, Selivan).
+      <strong>Core chunks</strong> — direct instruction and drill. <strong>Extension chunks</strong> — met in context, not glossed unless clicked.
+      Tasks start at Bloom's <strong>Apply</strong> and climb to <strong>Create</strong>: reformulations, roleplays, emoji-driven reviews, dubbing labs, CYOA, gallery walks, streaming-profile psy-tests.
+      Spaced repetition on <strong>Leitner (5 boxes)</strong>. Post-lesson AI reads the transcript + submissions and drafts progress updates for the teacher to confirm.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Units</h2>
+  <div class="units" id="units-grid"></div>
+</section>
+
+<section>
+  <h2>Reference</h2>
+  <div class="card">
+    <p style="margin:0 0 8px; font-size:14px;">
+      <strong>Method core:</strong> Dellar &amp; Walkley — <em>Teaching Lexically</em>;
+      Lewis — <em>The Lexical Approach</em>, <em>Teaching Collocation</em>;
+      Selivan — <em>Lexical Grammar</em>;
+      Nation — <em>Learning Vocabulary in Another Language</em>.
+    </p>
+    <p style="margin:0; font-size:14px;">
+      <strong>Task genres inspired by TB:</strong> Comm Activity 1.1 (snowflake cards), 1.2 (art exhibition), 2.1 (psy-test), 16.1 (elevator pitch), 16.2 (CYOA).
+    </p>
+  </div>
+</section>
+
+<footer>Outcomes B2 · lexical revision · GitHub + Supabase</footer>
+</div>
+
+<script src="shared/config.js"></script>
+<script>
+const UNITS = [
+  { n: 1,  title: 'Entertainment',        desc: 'films, TV, art, habits (tend to / used to)', ready: true  },
+  { n: 2,  title: 'Sightseeing',          desc: 'buildings, festivals, relative clauses',      ready: false },
+  { n: 3,  title: 'Things You Need',      desc: 'shops, negotiating, must / have to',          ready: false },
+  { n: 4,  title: 'Society',              desc: 'politics, values, passives',                   ready: false },
+  { n: 5,  title: 'Sports and Interests', desc: 'games, competitions, present perfect',        ready: false },
+  { n: 6,  title: 'Accommodation',        desc: 'renting, home life, describing places',       ready: false },
+  { n: 7,  title: 'Nature',               desc: 'wildlife, environment, future forms',         ready: false },
+  { n: 8,  title: 'Crime and Punishment', desc: 'law, safety, reporting verbs',                ready: false },
+  { n: 9,  title: 'Careers and Studying', desc: 'jobs, studies, conditionals',                 ready: false },
+  { n: 10, title: 'Socializing',          desc: 'small talk, invitations, question forms',     ready: false },
+  { n: 11, title: 'Travel and Transport', desc: 'delays, trips, quantifiers',                  ready: false },
+  { n: 12, title: 'Health and Medicine',  desc: 'symptoms, wellbeing, modals of deduction',    ready: false },
+  { n: 13, title: 'Life-Changing Events', desc: 'milestones, decisions, wish / if only',       ready: false },
+  { n: 14, title: 'Banks and Money',      desc: 'finance, debt, cleft sentences',              ready: false },
+  { n: 15, title: 'Food',                 desc: 'cooking, dining, articles',                   ready: false },
+  { n: 16, title: 'Business',             desc: 'work, deals, reported speech',                ready: false }
+];
+
+function pad(n) { return String(n).padStart(2, '0'); }
+function reviewBand(n) { return Math.ceil(n / 2); }
+
+function render() {
+  const sess = OutcomesSession.get();
+  const bar = document.getElementById('session-bar');
+
+  if (sess) {
+    const roleLabel = sess.role === 'teacher' ? 'Teacher' : sess.nickname;
+    const pillClass = sess.role === 'teacher' ? 'pill teacher' : 'pill';
+    bar.innerHTML = `
+      <div class="who">
+        <span class="${pillClass}">${roleLabel}</span>
+        <span style="color:var(--muted); font-size:13px;">Session active</span>
+      </div>
+      <div style="display:flex; gap:8px;">
+        ${sess.role === 'teacher' ? '<a href="admin.html" class="btn-secondary" style="text-decoration:none;">Admin</a>' : ''}
+        <button onclick="OutcomesSession.clear(); window.location.reload();">Sign out</button>
+      </div>`;
+  }
+
+  const isTeacher = sess?.role === 'teacher';
+  const isStudent = sess?.role === 'student';
+  const grid = document.getElementById('units-grid');
+
+  grid.innerHTML = UNITS.map(u => {
+    const num = pad(u.n);
+    const band = reviewBand(u.n);
+    const studentHref = u.ready ? `units/unit-${num}/student.html` : '#';
+    const teacherHref = u.ready ? `units/unit-${num}/teacher.html` : '#';
+    const studentClass = u.ready ? 'btn student' : 'btn student disabled';
+    const teacherClass = u.ready ? 'btn teacher' : 'btn teacher disabled';
+
+    let actions = '';
+    if (!sess) {
+      actions = `<a href="login.html" class="btn student">Sign in first</a>`;
+    } else if (isTeacher) {
+      actions = `
+        <a href="${studentHref}" class="${studentClass}" ${u.ready ? '' : 'onclick="return false;"'}>Student view</a>
+        <a href="${teacherHref}" class="${teacherClass}" ${u.ready ? '' : 'onclick="return false;"'}>Teacher view</a>`;
+    } else if (isStudent) {
+      actions = `<a href="${studentHref}" class="${studentClass}" ${u.ready ? '' : 'onclick="return false;"'}>${u.ready ? 'Enter lesson' : 'Coming soon'}</a>`;
+    }
+
+    return `
+      <div class="unit-card" data-review="${band}">
+        <div>
+          <div class="num">Unit ${num}${u.ready ? '' : ' · coming soon'}</div>
+          <h3 class="title">${u.title}</h3>
+        </div>
+        <p class="desc">${u.desc}</p>
+        <div class="unit-actions">${actions}</div>
+      </div>`;
+  }).join('');
+}
+
+render();
+</script>
+</body>
+</html>

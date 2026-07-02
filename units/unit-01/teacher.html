@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1 · Entertainment · Teacher</title>
+<link rel="stylesheet" href="../../shared/styles.css">
+<style>
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+  .tabs button {
+    padding: 12px 20px; background: none; border: none; border-bottom: 2px solid transparent;
+    font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer;
+  }
+  .tabs button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .block-card {
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; margin-bottom: 20px;
+  }
+  .block-card h3 {
+    margin: 0 0 4px; font-size: 18px; display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .block-card h3 .mins { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .block-card .lead { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+
+  .tnote {
+    background: #fef8f5; border-left: 3px solid var(--accent); padding: 12px 16px;
+    margin: 12px 0; border-radius: 6px; font-size: 14px;
+  }
+  .tnote strong { color: var(--accent); }
+
+  .key-box {
+    background: #f5f3ee; border-left: 3px solid var(--warm); padding: 12px 16px;
+    margin: 12px 0; border-radius: 6px; font-size: 14px;
+  }
+  .key-box strong { color: var(--warm); }
+
+  .ext-box {
+    background: #ecf3ec; border-left: 3px solid var(--green); padding: 12px 16px;
+    margin: 12px 0; border-radius: 6px; font-size: 14px;
+  }
+  .ext-box strong { color: var(--green); }
+
+  .rubric-table {
+    width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px;
+  }
+  .rubric-table th, .rubric-table td {
+    padding: 10px; border: 1px solid var(--line); text-align: left; vertical-align: top;
+  }
+  .rubric-table th { background: #f5f3ee; font-weight: 700; }
+
+  .students-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
+  }
+  .student-card {
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px;
+  }
+  .student-card h4 { margin: 0 0 4px; font-size: 16px; }
+  .student-card .meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .heatmap { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; margin-top: 10px; }
+  .heat-cell { height: 14px; border-radius: 3px; background: #eee; }
+  .heat-cell.confident { background: var(--green); }
+  .heat-cell.learning  { background: var(--warm); }
+  .heat-cell.shaky     { background: #c8553d; }
+  .heat-cell.mastered  { background: #4a6fa5; }
+
+  .queue-item {
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; gap: 16px;
+  }
+  .queue-item .info { flex: 1; }
+  .queue-item .conf-badge { font-size: 11px; padding: 3px 8px; border-radius: 100px; background: #f5f3ee; }
+  .queue-actions { display: flex; gap: 8px; align-items: center; }
+  .btn-approve { background: var(--green); color: #fff; padding: 8px 14px; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .btn-reject { background: #eee; color: #666; padding: 8px 14px; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; }
+
+  .end-lesson-cta {
+    background: linear-gradient(135deg, #fff5f2 0%, #fef7ee 100%);
+    border: 1px solid var(--accent); border-radius: var(--radius);
+    padding: 24px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="session-bar" id="session-bar"></div>
+
+<header>
+  <div class="eyebrow">Unit 1 · Teacher view · 120 min</div>
+  <h1>Entertainment — teacher</h1>
+  <p class="subtitle">Answer keys, methodology notes, extension &amp; fallback, rubrics, per-student dashboard, and AI post-lesson review queue.</p>
+</header>
+
+<div class="tabs">
+  <button class="active" data-tab="lesson">Lesson plan</button>
+  <button data-tab="students">Students</button>
+  <button data-tab="submissions">Submissions</button>
+  <button data-tab="ai">AI queue</button>
+</div>
+
+<!-- ============ LESSON PLAN ============ -->
+<div class="tab-panel active" id="tab-lesson">
+
+<div class="end-lesson-cta">
+  <div>
+    <strong>Finish lesson</strong> — triggers post-lesson AI processing (transcript + submissions → suggestions).<br>
+    <span style="color:var(--muted); font-size:13px;">Suggestions land in the "AI queue" tab.</span>
+  </div>
+  <button class="btn-primary" style="width:auto;" onclick="finishLesson()">End lesson · run AI</button>
+</div>
+
+<!-- Block 0 -->
+<div class="block-card">
+  <h3>0 · Last-time recap <span class="mins">3 min</span></h3>
+  <p class="lead">Student sees a summary from last session_log + shaky chunks. First lesson → welcome message.</p>
+  <div class="tnote"><strong>Teacher note:</strong> Read the summary aloud with student. Ask "what stuck with you from that?" before starting.</div>
+</div>
+
+<!-- Block 1 -->
+<div class="block-card">
+  <h3>1 · Snowflake cards <span class="mins">10 min</span></h3>
+  <p class="lead">TB Comm Activity 1.1 pattern. 12 topic cards. Pick 3, talk 90 sec each.</p>
+  <div class="tnote"><strong>Teacher note (ICQ):</strong> "How many will you pick?" (3) · "Which grammar do we use?" (tend to / used to / would). Model the first with your own answer.</div>
+  <div class="key-box"><strong>Model answer:</strong> <em>"When I was a teenager, I used to be glued to the radio. I'd tape songs off Radio 1, and I hardly ever missed the top-40 countdown. Now, as a rule, I only listen to music while running."</em></div>
+  <div class="ext-box">
+    <strong>Extension (stronger):</strong> ask student to also link chunks between two topics ("my teenage idol" + "posters on my wall").<br>
+    <strong>Fallback (weaker):</strong> pick 2 cards instead of 3, give them 3 model chunks to hit.
+  </div>
+</div>
+
+<!-- Block 2 -->
+<div class="block-card">
+  <h3>2 · Swipe left / right <span class="mins">10 min</span></h3>
+  <p class="lead">10 posters. Left = "not my thing", right = "would watch". One sentence with a chunk per swipe.</p>
+  <div class="tnote"><strong>Teacher note (CCQ):</strong> "If I say 'It's a bit weird', is that praise or complaint?" (context-dependent — the whole point of chunks).</div>
+  <div class="key-box"><strong>Model swipes:</strong>
+    <ul>
+      <li>Green Book → <em>"It's a genuinely uplifting story — the plot revolves around an unlikely friendship."</em></li>
+      <li>Marvel Sequel → <em>"Way too commercial for me. Over-the-top acting from the first minute."</em></li>
+      <li>Absurd Reality Show → <em>"Not really my kind of thing — a bit weird and OTT."</em></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Block 3 -->
+<div class="block-card">
+  <h3>3 · Bad-review rescue <span class="mins">12 min</span></h3>
+  <p class="lead">Rewrite bland reviews using extreme adjectives with really/absolutely.</p>
+  <div class="tnote"><strong>Teacher note:</strong> The whole point is the "very hilarious" bug. Elicit the rule from student: <em>"With <strong>hilarious / dreadful / astonishing / gripping</strong>, can we say 'very'?"</em> → No. → "Why not?" → Extreme adjectives are already at the maximum.</div>
+  <div class="key-box"><strong>Answer keys:</strong>
+    <ol>
+      <li>"The film was <em>absolutely dreadful</em> — I couldn't finish it."</li>
+      <li>"Her stand-up is <em>absolutely hilarious</em>. I was in tears."</li>
+      <li>"The final episode was <em>genuinely gripping</em>. I didn't move for 50 minutes."</li>
+    </ol>
+  </div>
+</div>
+
+<!-- Block 4 -->
+<div class="block-card">
+  <h3>4 · Preposition collision <span class="mins">8 min</span></h3>
+  <p class="lead">12 sentences with fixed-preposition chunks. Not "rules" — pattern-noticing.</p>
+  <div class="tnote"><strong>Teacher note:</strong> Do NOT teach these as "preposition rules". After student checks, ask: <em>"Which of these did you get from memory? Which felt like guessing?"</em> Guessed ones go to Leitner box 1.</div>
+  <div class="key-box"><strong>All answers:</strong> addicted <em>to</em> · reliant <em>on</em> · driven <em>by</em> · open <em>to</em> · revolves <em>around</em> · satire <em>on</em> · sequel <em>to</em> · touched <em>on</em> · depicted <em>as</em> · in the foreground <em>of</em> · close <em>to</em> · disturbed <em>by</em>.</div>
+</div>
+
+<!-- Block 5 -->
+<div class="block-card">
+  <h3>5 · The Critic — emoji → review <span class="mins">12 min</span></h3>
+  <p class="lead">Student sees emoji only, writes 3-sentence review with 2+ chunks.</p>
+  <div class="tnote"><strong>Teacher note:</strong> The film-reveal is optional and playful. Focus feedback on <strong>chunks used</strong> and <strong>register</strong> — not on whether they "guessed the movie".</div>
+  <div class="key-box"><strong>Model reviews:</strong>
+    <p>😱💀🤯 → <em>"The plot revolves around a family unravelling after a death. Deeply disturbing — I looked away twice. A gripping ending, but not for everyone."</em></p>
+    <p>🥱😩💤 → <em>"Over-the-top from minute one. Every plot twist felt commercial and safe. An all-time low for the franchise."</em></p>
+    <p>😭❤️🌟 → <em>"A genuinely uplifting story. The plot revolves around two men on a road trip. I burst into tears twice."</em></p>
+  </div>
+</div>
+
+<!-- Block 6 -->
+<div class="block-card">
+  <h3>6 · Dubbing lab <span class="mins">12 min</span></h3>
+  <p class="lead">Silent 30-sec clip. Student writes 4 dialogue lines, using 5+ chunks.</p>
+  <div class="tnote"><strong>Teacher note:</strong> Recommended clips: Wikimedia public-domain shorts, or classic silent-film segments (Chaplin, Keaton). Update <code>units/unit-01/data.json</code> with a chosen clip URL. Keep it ≤ 30 sec so the writing task stays tight.</div>
+  <div class="ext-box"><strong>Extension:</strong> record student reading their dubbing aloud → saves to <code>creative_submissions.content_audio_url</code>.</div>
+</div>
+
+<!-- Block 7 -->
+<div class="block-card">
+  <h3>7 · Guess the plot from 3 chunks <span class="mins">8 min</span></h3>
+  <p class="lead">Given three chunks, invent a synopsis. Reveal a real film.</p>
+  <div class="key-box"><strong>Answer:</strong> <em>Parasite</em> (2019, Bong Joon-ho) — matches all three chunks precisely.</div>
+  <div class="ext-box"><strong>Extension:</strong> student generates their own 3-chunk challenge for you.</div>
+</div>
+
+<!-- Block 8 -->
+<div class="block-card">
+  <h3>8 · Streaming Profile psy-test <span class="mins">15 min</span></h3>
+  <p class="lead">6 personal questions → typology reveal. Universal (everyone watches). Full text saved to submissions.</p>
+  <div class="tnote"><strong>Teacher note:</strong> The typology is playful — treat it that way. Focus feedback on chunk-density and precision. Which question triggered the most natural chunk usage? That's their strong context.</div>
+  <table class="rubric-table">
+    <thead><tr><th>Criterion</th><th>5</th><th>3</th><th>1</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Chunks density</strong></td><td>≥ 12 target chunks across answers</td><td>6–11 chunks</td><td>&lt; 6</td></tr>
+      <tr><td><strong>Naturalness</strong></td><td>Chunks feel embedded, not shoehorned</td><td>Half embedded, half forced</td><td>Chunks marked but awkward</td></tr>
+      <tr><td><strong>Precision</strong></td><td>Right chunk for the emotional weight</td><td>Chunk in wrong register</td><td>Chunk misused</td></tr>
+      <tr><td><strong>Grammar in chunk</strong></td><td>Prep + pattern correct</td><td>1–2 pattern errors</td><td>Multiple pattern errors</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Block 9 -->
+<div class="block-card">
+  <h3>9 · Gallery Curator <span class="mins">20 min</span></h3>
+  <p class="lead">6 real paintings (Wikimedia). Pick 3, answer curator's questions, write 3-sentence wall label.</p>
+  <div class="tnote"><strong>Teacher note:</strong> This is not an art-history test. Zero knowledge needed. If student says "I don't know art" — reply: "Perfect, describe what you literally see." Focus is on chunks (foreground / atmospheric / depicts as / open to interpretation) reacting to real visuals.</div>
+  <div class="key-box"><strong>Model wall label</strong> for Hopper's <em>Nighthawks</em>:<br>
+    <em>"In the foreground, three figures sit under harsh light — atmospheric and deeply lonely. The scene is open to interpretation: is this a meeting, or an accidental gathering? Hopper depicts urban night-life as beautifully empty."</em>
+  </div>
+  <table class="rubric-table" style="margin-top:10px;">
+    <thead><tr><th>Criterion</th><th>5</th><th>3</th><th>1</th></tr></thead>
+    <tbody>
+      <tr><td>Chunks used</td><td>≥ 8 art chunks</td><td>4–7</td><td>&lt; 4</td></tr>
+      <tr><td>Visual specificity</td><td>Names actual details</td><td>General reactions</td><td>Vague</td></tr>
+      <tr><td>Register (label style)</td><td>Sounds like a museum</td><td>Semi-formal</td><td>Casual conversational</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Block 10 -->
+<div class="block-card">
+  <h3>10 · Self-log &amp; voice recall <span class="mins">10 min</span></h3>
+  <p class="lead">Student tags shaky chunks (→ Leitner box 1) and records 30-sec audio with 3+ chunks.</p>
+  <div class="tnote"><strong>Teacher note:</strong> After lesson, listen to the audio in the Submissions tab. Note pronunciation gaps and any pattern-collision errors in <code>errors_log</code>.</div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Bloom map for this lesson</h3>
+  <p style="margin:0; font-size:14px;">
+    <strong>Apply:</strong> Blocks 1, 2, 3, 4 · <strong>Analyze:</strong> 3, 4, 5 · <strong>Evaluate:</strong> 5, 6, 9 · <strong>Create:</strong> 6, 7, 8, 9, 10
+  </p>
+</div>
+
+</div>
+
+<!-- ============ STUDENTS ============ -->
+<div class="tab-panel" id="tab-students">
+  <div class="students-grid" id="students-grid">
+    <div class="empty" style="grid-column: 1/-1;">Loading students...</div>
+  </div>
+</div>
+
+<!-- ============ SUBMISSIONS ============ -->
+<div class="tab-panel" id="tab-submissions">
+  <div class="card" style="margin-bottom:16px;">
+    <label>Filter by student</label>
+    <select id="sub-filter" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:8px;">
+      <option value="">All students</option>
+    </select>
+  </div>
+  <div id="sub-list">
+    <div class="empty">Loading submissions...</div>
+  </div>
+</div>
+
+<!-- ============ AI QUEUE ============ -->
+<div class="tab-panel" id="tab-ai">
+  <div class="card" style="margin-bottom:16px;">
+    <p style="margin:0;"><strong>Post-lesson AI processing</strong> reads the lesson transcript + student's submissions and drafts:
+    (1) chunk-progress updates, (2) error-log entries, (3) rubric scores, (4) session summary. Confidence &gt; 0.9 for chunk-progress → auto-applied. Everything else awaits your approval.</p>
+  </div>
+  <div id="ai-list">
+    <div class="empty">No pending suggestions.</div>
+  </div>
+</div>
+
+<footer>Unit 1 · Teacher · <a href="../../index.html">Back to hub</a></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../shared/config.js"></script>
+<script>
+OutcomesSession.requireTeacher('../../login.html');
+const session = OutcomesSession.get();
+const sb = getSupabase();
+
+document.getElementById('session-bar').innerHTML = `
+  <div class="who">
+    <span class="pill teacher">Teacher</span>
+    <span style="color:var(--muted); font-size:13px;">Unit 1 · methodology view</span>
+  </div>
+  <div>
+    <a href="../../admin.html" class="btn-secondary" style="text-decoration:none;">Admin</a>
+    <a href="../../index.html" class="btn-secondary" style="text-decoration:none;">← Hub</a>
+    <a href="student.html" class="btn-secondary" style="text-decoration:none;">Preview student view</a>
+    <button onclick="OutcomesSession.clear(); window.location='../../login.html';">Sign out</button>
+  </div>
+`;
+
+// Tab switching
+document.querySelectorAll('.tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    if (btn.dataset.tab === 'students') loadStudents();
+    if (btn.dataset.tab === 'submissions') loadSubmissions();
+    if (btn.dataset.tab === 'ai') loadAiQueue();
+  });
+});
+
+async function loadStudents() {
+  const grid = document.getElementById('students-grid');
+  if (!sb || OUTCOMES_CONFIG.SUPABASE_URL.includes('YOUR-PROJECT')) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1;">Configure Supabase in <code>shared/config.js</code> to see per-student data.</div>`;
+    return;
+  }
+  const { data: students, error } = await sb.from('students').select('*').order('nickname');
+  if (error || !students?.length) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1;">No students. Add via <a href="../../admin.html">Admin</a>.</div>`;
+    return;
+  }
+  const cards = await Promise.all(students.map(async s => {
+    const { data: progress } = await sb.from('chunk_progress')
+      .select('status, leitner_box')
+      .eq('student_id', s.id)
+      .eq('chunks.unit', 1);
+    const buckets = { new: 0, learning: 0, shaky: 0, confident: 0, mastered: 0 };
+    (progress || []).forEach(p => buckets[p.status] = (buckets[p.status] || 0) + 1);
+    const total = Object.values(buckets).reduce((a,b) => a+b, 0);
+    return `
+      <div class="student-card">
+        <h4>${s.nickname}</h4>
+        <div class="meta">Unit ${s.current_unit || 1} · Last seen ${s.last_seen_at ? new Date(s.last_seen_at).toLocaleDateString() : '—'}</div>
+        <div>
+          <span class="badge mastered">${buckets.mastered || 0} mastered</span>
+          <span class="badge confident">${buckets.confident || 0} confident</span>
+          <span class="badge shaky">${buckets.shaky || 0} shaky</span>
+          <span class="badge new">${buckets.new || 0} new</span>
+        </div>
+        <div class="heatmap">
+          ${Array.from({length: 40}, (_,i) => {
+            const p = (progress || [])[i];
+            return `<div class="heat-cell ${p ? p.status : ''}"></div>`;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }));
+  grid.innerHTML = cards.join('');
+}
+
+async function loadSubmissions() {
+  const list = document.getElementById('sub-list');
+  const filter = document.getElementById('sub-filter');
+
+  if (!sb || OUTCOMES_CONFIG.SUPABASE_URL.includes('YOUR-PROJECT')) {
+    list.innerHTML = `<div class="empty">Configure Supabase to see submissions.</div>`;
+    return;
+  }
+
+  // Populate filter
+  if (filter.options.length <= 1) {
+    const { data: students } = await sb.from('students').select('id, nickname').order('nickname');
+    (students || []).forEach(s => {
+      const o = document.createElement('option'); o.value = s.id; o.textContent = s.nickname;
+      filter.appendChild(o);
+    });
+    filter.addEventListener('change', loadSubmissions);
+  }
+
+  let q = sb.from('creative_submissions')
+    .select('id, submitted_at, task_slug, content_text, unit, students(nickname)')
+    .eq('unit', 1)
+    .order('submitted_at', { ascending: false })
+    .limit(50);
+  if (filter.value) q = q.eq('student_id', filter.value);
+  const { data, error } = await q;
+  if (error || !data?.length) {
+    list.innerHTML = `<div class="empty">No submissions yet.</div>`;
+    return;
+  }
+  list.innerHTML = data.map(s => `
+    <div class="card" style="margin-bottom:10px;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+        <strong>${s.students?.nickname || 'Unknown'} · ${s.task_slug}</strong>
+        <span style="font-size:12px; color:var(--muted);">${new Date(s.submitted_at).toLocaleString()}</span>
+      </div>
+      <pre style="white-space:pre-wrap; font-family:inherit; font-size:14px; margin:0; color:#333; max-height:200px; overflow:auto;">${escapeHtml(s.content_text || '')}</pre>
+    </div>
+  `).join('');
+}
+
+async function loadAiQueue() {
+  const list = document.getElementById('ai-list');
+  if (!sb || OUTCOMES_CONFIG.SUPABASE_URL.includes('YOUR-PROJECT')) {
+    list.innerHTML = `<div class="empty">Configure Supabase + deploy edge function to see AI suggestions.</div>`;
+    return;
+  }
+  const { data, error } = await sb.from('ai_suggestions_queue')
+    .select('id, target_table, action, payload, confidence, reasoning, created_at, students(nickname)')
+    .eq('status', 'pending')
+    .order('created_at', { ascending: false })
+    .limit(50);
+  if (error || !data?.length) {
+    list.innerHTML = `<div class="empty">No pending suggestions.</div>`;
+    return;
+  }
+  list.innerHTML = data.map(q => `
+    <div class="queue-item">
+      <div class="info">
+        <div><strong>${q.students?.nickname || 'Student'}</strong> · ${q.target_table} · ${q.action}</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:6px;">${escapeHtml(q.reasoning || '')}</div>
+        <details style="margin-top:6px;">
+          <summary style="cursor:pointer; font-size:12px;">payload</summary>
+          <pre style="font-size:12px; margin:6px 0; white-space:pre-wrap;">${escapeHtml(JSON.stringify(q.payload, null, 2))}</pre>
+        </details>
+      </div>
+      <div class="queue-actions">
+        <span class="conf-badge">${Math.round(q.confidence*100)}%</span>
+        <button class="btn-approve" onclick="approveAi('${q.id}')">Approve</button>
+        <button class="btn-reject" onclick="rejectAi('${q.id}')">Reject</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.approveAi = async function(id) {
+  if (!sb) return;
+  await sb.from('ai_suggestions_queue').update({ status: 'confirmed', reviewed_at: new Date().toISOString() }).eq('id', id);
+  loadAiQueue();
+};
+window.rejectAi = async function(id) {
+  if (!sb) return;
+  await sb.from('ai_suggestions_queue').update({ status: 'rejected', reviewed_at: new Date().toISOString() }).eq('id', id);
+  loadAiQueue();
+};
+
+async function finishLesson() {
+  if (!confirm('End lesson and trigger post-lesson AI processing?')) return;
+  if (!sb || OUTCOMES_CONFIG.SUPABASE_URL.includes('YOUR-PROJECT')) {
+    alert('Supabase not configured yet.');
+    return;
+  }
+  // Find latest open session
+  const sessionId = prompt('Enter session_id to process (or leave blank to get latest for a student):');
+  if (!sessionId) return;
+
+  const res = await sb.functions.invoke('process_lesson', {
+    body: { session_id: sessionId }
+  });
+  if (res.error) {
+    alert('Error: ' + res.error.message + '\n\nIf this says ANTHROPIC_API_KEY missing, add it via Supabase Dashboard → Edge Functions → Secrets.');
+    return;
+  }
+  const d = res.data || {};
+  alert(`Done.\n\nAuto-applied: ${d.auto_applied || 0}\nPending review: ${d.pending_review || 0}\n\nSummary: ${d.summary || '—'}`);
+  document.querySelector('[data-tab="ai"]').click();
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>

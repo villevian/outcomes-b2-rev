@@ -1,0 +1,175 @@
+{
+  "unit": 1,
+  "title": "Entertainment",
+  "sb_pages": "6-15",
+  "outcomes": [
+    "Discuss how you spend your free time",
+    "Discuss different films and TV series",
+    "Talk about pictures and art",
+    "Disagree politely"
+  ],
+  "grammar_in_lexis": ["Habits (tend to / used to / would)", "Adjectives and adverbs of degree (extreme adjectives with really/absolutely)"],
+  "subtopics": [
+    {
+      "id": "1A",
+      "title": "Talking about films, music and books",
+      "sb_pages": "8-9",
+      "core_chunks": [
+        {"id": "u1_1A_catchy", "chunk": "a catchy tune / chorus / slogan", "headword": "catchy", "pos": "adj", "notes": "sticks in your mind", "collocates": ["catchy tune", "catchy chorus", "catchy slogan", "catchy jingle"], "examples_book": ["It's a very catchy tune", "a great song with a catchy chorus"], "extra_contexts": ["a catchy TikTok jingle stuck in my head all day", "the brand needs a catchier tagline", "her campaign slogan is annoyingly catchy"]},
+        {"id": "u1_1A_hilarious", "chunk": "absolutely hilarious", "headword": "hilarious", "pos": "adj", "pattern": "extreme adjective (really/absolutely, NOT very)", "notes": "extremely funny", "collocates": ["a hilarious joke", "hilarious YouTube clips", "the entire speech was hilarious"], "extra_contexts": ["my Monday meetings are hilariously chaotic", "his impression of the boss is absolutely hilarious", "she posted a hilarious take on the news"]},
+        {"id": "u1_1A_commercial", "chunk": "a commercial success / failure", "headword": "commercial", "pos": "adj", "notes": "often negative — 'made just for money'", "collocates": ["a commercial TV channel", "not commercially viable", "a commercial success", "the film was a flop commercially"], "extra_contexts": ["her indie album turned surprisingly commercial", "streaming has made everything more commercial", "a commercially safe sequel"]},
+        {"id": "u1_1A_disturbing", "chunk": "find sth disturbing", "headword": "disturbing", "pos": "adj", "pattern": "extreme (really/deeply)", "collocates": ["deeply disturbing news", "viewers may find some scenes disturbing", "a disturbing trend", "a disturbing thought"], "extra_contexts": ["I found the news alert disturbing", "there's a disturbing trend in tech layoffs", "a deeply disturbing image from the war zone"]},
+        {"id": "u1_1A_over_the_top", "chunk": "over-the-top / OTT", "headword": "over-the-top", "pos": "adj", "notes": "so extreme it seems silly", "collocates": ["over-the-top acting", "his reaction was over-the-top", "OTT"], "extra_contexts": ["her Instagram is a bit OTT", "an over-the-top wedding proposal on TikTok", "the marketing campaign was way over-the-top"]},
+        {"id": "u1_1A_gripping", "chunk": "a gripping tale / drama", "headword": "gripping", "pos": "adj", "pattern": "extreme (really/absolutely)", "collocates": ["a gripping tale", "a gripping story", "a gripping drama", "a gripping novel", "a gripping ending"], "extra_contexts": ["the podcast is genuinely gripping", "a gripping courtroom drama", "her memoir is a gripping account of survival"]},
+        {"id": "u1_1A_uplifting", "chunk": "an uplifting story / experience", "headword": "uplifting", "pos": "adj", "notes": "makes you feel hope", "collocates": ["a joyful and uplifting occasion", "uplifting music", "an uplifting message"], "extra_contexts": ["a genuinely uplifting graduation speech", "I need something uplifting after this news", "her Instagram feed is quietly uplifting"]},
+        {"id": "u1_1A_weird", "chunk": "a bit weird / really weird", "headword": "weird", "pos": "adj", "notes": "strange and unusual", "collocates": ["a weird feeling", "weirdly, the stadium was empty"], "extra_contexts": ["it's weird how empty the office is on Fridays", "a weird notification popped up on my phone", "weirdly, no one replied to the group chat"]},
+        {"id": "u1_1A_astonishing", "chunk": "astonishing accomplishment", "headword": "astonishing", "pos": "adj", "pattern": "extreme (really/absolutely)", "collocates": ["an astonishing accomplishment", "astonishingly, I've never visited it", "her creativity astonishes me"], "extra_contexts": ["an astonishing turnaround in the second half", "astonishingly, the flight was on time", "his portfolio grew at an astonishing rate"]},
+        {"id": "u1_1A_dreadful", "chunk": "absolutely dreadful", "headword": "dreadful", "pos": "adj", "pattern": "extreme (really/absolutely, NOT very)", "collocates": ["dreadful weather", "absolutely dreadful news"], "extra_contexts": ["the traffic this morning was dreadful", "an absolutely dreadful first draft", "she's dreading the interview"]}
+      ],
+      "extension_chunks": [
+        {"id": "u1_1A_addicted", "chunk": "be addicted to sth / -ing", "headword": "addicted", "pos": "adj", "pattern": "addicted TO + noun/-ing", "collocates": ["addicted to coffee", "addicted to reality TV"], "family": ["addiction (n)", "addict (n)"], "extra_contexts": ["I'm hopelessly addicted to my morning podcast", "he became addicted to checking his phone"]},
+        {"id": "u1_1A_background", "chunk": "in the background", "headword": "background", "pos": "n", "collocates": ["background music", "background noise", "the TV was on in the background"], "extra_contexts": ["I can hear the kids in the background of the call", "we need soft background music for the office"]},
+        {"id": "u1_1A_big_budget", "chunk": "a big-budget film / production", "headword": "big-budget", "pos": "adj", "opposite": "low-budget", "collocates": ["a big-budget movie", "a big-budget drama"], "extra_contexts": ["a big-budget Netflix series", "she moved from low-budget indies to big-budget action"]},
+        {"id": "u1_1A_control", "chunk": "keep control of / under control", "headword": "control", "pos": "v/n", "collocates": ["control your diet", "keep control of your spending", "under control"], "extra_contexts": ["I need to keep my caffeine intake under control", "her screen time is finally under control"]},
+        {"id": "u1_1A_on_demand", "chunk": "on demand", "headword": "on demand", "pos": "phrase", "collocates": ["watch films on demand", "available on demand"], "extra_contexts": ["everything is on demand now, nothing is scheduled", "sporting content you can watch on demand"]},
+        {"id": "u1_1A_glued", "chunk": "be glued to sth", "headword": "glued", "pos": "adj", "pattern": "glued TO + noun", "collocates": ["glued to the screen", "glued to his desk", "glued to my ears (headphones)"], "extra_contexts": ["I was glued to my phone during the debate", "he's been glued to his laptop all afternoon", "kids glued to their tablets on the flight"]},
+        {"id": "u1_1A_inspiring", "chunk": "an inspiring speech / teacher", "headword": "inspiring", "pos": "adj", "collocates": ["an inspiring teacher", "inspiring leadership", "an inspiring message of hope"], "family": ["inspire (v)", "inspired (adj)"], "extra_contexts": ["the keynote was surprisingly inspiring", "an inspiring LinkedIn post that actually meant something"]},
+        {"id": "u1_1A_remake", "chunk": "a remake of sth", "headword": "remake", "pos": "n/v", "collocates": ["a remake of 'The Italian Job'", "the remake was a total flop"], "extra_contexts": ["yet another Disney live-action remake", "the reboot is basically a remake with better VFX"]},
+        {"id": "u1_1A_stuff", "chunk": "stuff like that / that kind of stuff", "headword": "stuff", "pos": "n (uncount)", "notes": "informal", "collocates": ["all kinds of stuff", "stuff like that", "download stuff"], "extra_contexts": ["we watched documentaries and stuff like that", "there's a bunch of stuff I need to sort out"]},
+        {"id": "u1_1A_tear", "chunk": "burst into tears / be in tears", "headword": "tear", "pos": "n", "collocates": ["be in tears", "burst into tears", "close to tears"], "family": ["tearful (adj)"], "extra_contexts": ["I nearly burst into tears at the ceremony", "she was close to tears reading the email"]}
+      ]
+    },
+    {
+      "id": "1B",
+      "title": "Reviews, remakes, plots",
+      "sb_pages": "10-11",
+      "core_chunks": [
+        {"id": "u1_1B_box_office", "chunk": "a box-office hit / flop", "headword": "box office", "pos": "n", "collocates": ["take at the box office", "a box-office hit", "a box-office smash hit"], "extra_contexts": ["the sequel bombed at the box office", "an unexpected box-office hit last summer"]},
+        {"id": "u1_1B_revolve", "chunk": "the plot revolves around sb/sth", "headword": "revolve", "pos": "v", "pattern": "revolve AROUND + noun", "collocates": ["the plot revolves around a young boy", "his life revolves around making art"], "extra_contexts": ["her career revolves around one big client", "the whole meeting revolved around Q4 targets"]},
+        {"id": "u1_1B_twist", "chunk": "a plot twist / twists and turns", "headword": "twist", "pos": "n", "collocates": ["a plot twist", "twists and turns", "I didn't expect a plot twist like this"], "extra_contexts": ["life took a weird twist that year", "the negotiation had more twists and turns than a thriller"]},
+        {"id": "u1_1B_sequel", "chunk": "a sequel to sth", "headword": "sequel", "pos": "n", "pattern": "sequel TO + noun", "collocates": ["a sequel to the novel", "the sequel came a few years later"], "extra_contexts": ["her second album feels like a sequel to the first", "the trilogy's final sequel underwhelmed fans"]},
+        {"id": "u1_1B_adaptation", "chunk": "an adaptation of sth", "headword": "adaptation", "pos": "n", "collocates": ["an adaptation of Macbeth", "a television adaptation"], "family": ["adapt (v)"], "extra_contexts": ["a graphic-novel adaptation for streaming", "the stage adaptation was tighter than the book"]},
+        {"id": "u1_1B_classic", "chunk": "a classic novel / film", "headword": "classic", "pos": "adj/n", "collocates": ["a classic Brazilian novel", "one of my all-time favourite classics"], "extra_contexts": ["a modern classic", "it's a classic mistake we all make on our first job"]},
+        {"id": "u1_1B_smash_hit", "chunk": "a smash hit", "headword": "smash hit", "pos": "n", "collocates": ["a smash hit album", "a box-office smash hit"], "extra_contexts": ["the song became an unexpected smash hit on TikTok", "her podcast is a smash hit with under-30s"]},
+        {"id": "u1_1B_driven", "chunk": "driven by sth / a driven person", "headword": "driven", "pos": "adj", "pattern": "driven BY + noun", "collocates": ["driven by desire", "a driven professional", "a driven person"], "family": ["drive (v)"], "extra_contexts": ["she's driven by curiosity, not money", "a decision driven by market pressure"]},
+        {"id": "u1_1B_reliant", "chunk": "reliant on sth", "headword": "reliant", "pos": "adj", "pattern": "reliant ON + noun", "collocates": ["heavily reliant on box office success", "reliant on technology"], "family": ["rely (v)", "reliable (adj)"], "extra_contexts": ["we're too reliant on Slack", "a business model reliant on ad revenue"]},
+        {"id": "u1_1B_tackle", "chunk": "tackle a problem / challenge", "headword": "tackle", "pos": "v", "collocates": ["tackle a challenge", "tackle a problem", "tackle the issue"], "extra_contexts": ["how are you going to tackle that inbox?", "the government failed to tackle inflation"]},
+        {"id": "u1_1B_touch_on", "chunk": "touch on a subject", "headword": "touch", "pos": "v", "pattern": "touch ON + noun", "collocates": ["touches on the subject of", "touches on people's deepest fears"], "extra_contexts": ["the podcast briefly touched on burnout", "her essay touches on identity without preaching"]},
+        {"id": "u1_1B_sharp", "chunk": "a sharp satire on sth / sharp criticism", "headword": "sharp", "pos": "adj", "pattern": "sharp satire ON + noun", "collocates": ["a sharp satire on politics", "sharp criticism", "sharply critical of"], "extra_contexts": ["a sharp satire on hustle culture", "the review was sharply worded"]},
+        {"id": "u1_1B_tension", "chunk": "mounting tension / tension builds", "headword": "tension", "pos": "n", "collocates": ["mounting tension", "the tension builds throughout the film", "tensions are high"], "family": ["tense (adj)"], "extra_contexts": ["mounting tension in the group chat", "you could feel the tension in the meeting"]},
+        {"id": "u1_1B_all_time", "chunk": "an all-time favourite / high / low", "headword": "all-time", "pos": "adj", "collocates": ["all-time favourite writer", "an all-time high", "an all-time low"], "extra_contexts": ["Bitcoin hit an all-time high overnight", "team morale is at an all-time low", "my all-time favourite comfort show"]}
+      ],
+      "extension_chunks": [
+        {"id": "u1_1B_basement", "chunk": "a basement flat", "headword": "basement", "pos": "n"},
+        {"id": "u1_1B_cast", "chunk": "an amazing cast / be cast as", "headword": "cast", "pos": "n/v", "pattern": "be cast AS + noun"},
+        {"id": "u1_1B_common_ground", "chunk": "find common ground on sth", "headword": "common ground", "pos": "n"},
+        {"id": "u1_1B_desire", "chunk": "a strong desire to do sth / desire for", "headword": "desire", "pos": "n", "pattern": "desire TO + verb / desire FOR + noun"},
+        {"id": "u1_1B_division", "chunk": "social divisions / division of labour", "headword": "division", "pos": "n", "pattern": "division OF + noun"},
+        {"id": "u1_1B_dubbing", "chunk": "prefer subtitles to dubbing", "headword": "dubbing", "pos": "n"},
+        {"id": "u1_1B_elsewhere", "chunk": "popular elsewhere / go elsewhere", "headword": "elsewhere", "pos": "adv"},
+        {"id": "u1_1B_evermore", "chunk": "evermore sophisticated", "headword": "evermore", "pos": "adv"},
+        {"id": "u1_1B_flaw", "chunk": "flaws in sth / deeply flawed", "headword": "flaw", "pos": "n"},
+        {"id": "u1_1B_graphic_novel", "chunk": "a graphic novel", "headword": "graphic novel", "pos": "n"},
+        {"id": "u1_1B_prestigious", "chunk": "a prestigious award / university", "headword": "prestigious", "pos": "adj"},
+        {"id": "u1_1B_psychological", "chunk": "a psychological need / disorder / well-being", "headword": "psychological", "pos": "adj"},
+        {"id": "u1_1B_satire", "chunk": "political satire", "headword": "satire", "pos": "n"},
+        {"id": "u1_1B_shoot", "chunk": "shoot a TV series / the film was shot in…", "headword": "shoot", "pos": "v"},
+        {"id": "u1_1B_streaming", "chunk": "streaming services / live streaming", "headword": "streaming", "pos": "n"},
+        {"id": "u1_1B_terrorism", "chunk": "acts of terrorism", "headword": "terrorism", "pos": "n"},
+        {"id": "u1_1B_iceberg", "chunk": "just the tip of the iceberg", "headword": "tip of the iceberg", "pos": "phrase"},
+        {"id": "u1_1B_wealth", "chunk": "a wealth gap / wealthy people", "headword": "wealth", "pos": "n"}
+      ]
+    },
+    {
+      "id": "1C",
+      "title": "Talking about pictures and art",
+      "sb_pages": "12-13",
+      "core_chunks": [
+        {"id": "u1_1C_abstract", "chunk": "abstract painting / composition", "headword": "abstract", "pos": "adj/n", "collocates": ["an exhibition of abstract paintings", "abstract compositions", "purely abstract"], "extra_contexts": ["her artwork is purely abstract", "the report is too abstract, we need specifics"]},
+        {"id": "u1_1C_ambiguous", "chunk": "deliberately ambiguous", "headword": "ambiguous", "pos": "adj", "collocates": ["an ambiguous phrase", "deliberately ambiguous"], "family": ["ambiguity (n)", "unambiguous (adj)"], "extra_contexts": ["her email was deliberately ambiguous", "the CEO's answer was carefully ambiguous"]},
+        {"id": "u1_1C_atmospheric", "chunk": "atmospheric music / painting", "headword": "atmospheric", "pos": "adj", "pattern": "extreme (really/genuinely)", "collocates": ["atmospheric music", "an atmospheric painting"], "extra_contexts": ["a genuinely atmospheric café for working", "the show has an atmospheric opening scene"]},
+        {"id": "u1_1C_beneath", "chunk": "beneath the surface", "headword": "beneath", "pos": "adv/prep", "collocates": ["beneath the surface", "beneath her smile"], "extra_contexts": ["beneath the friendly emails, tension was building", "beneath the surface, the team was exhausted"]},
+        {"id": "u1_1C_bold", "chunk": "bold colours", "headword": "bold", "pos": "adj", "collocates": ["bold colours", "in bold", "a bold red"], "extra_contexts": ["she made a bold career move", "the pitch deck uses bold colours effectively"]},
+        {"id": "u1_1C_conventional", "chunk": "a conventional portrait ↔ unconventional", "headword": "conventional", "pos": "adj", "collocates": ["a conventional novel", "a highly conventional upbringing", "an unconventional approach"], "extra_contexts": ["a conventional career path", "her unconventional teaching methods work"]},
+        {"id": "u1_1C_depict", "chunk": "depict sb/sth as sth", "headword": "depict", "pos": "v", "pattern": "depict AS + adj/noun", "collocates": ["the therapist was depicted as calm", "the author depicted the main character as cruel"], "extra_contexts": ["the media depicted her as reckless", "the ad depicts working parents as heroes"]},
+        {"id": "u1_1C_dramatic", "chunk": "dramatic scenery / a dramatic painting", "headword": "dramatic", "pos": "adj", "collocates": ["dramatic scenery", "highly dramatic fashion"], "extra_contexts": ["a dramatic drop in engagement", "her exit from the meeting was pretty dramatic"]},
+        {"id": "u1_1C_foreground", "chunk": "in the foreground ↔ in the background", "headword": "foreground", "pos": "n", "pattern": "IN THE + foreground/background", "collocates": ["in the foreground of the picture", "a small cat in the foreground"], "extra_contexts": ["in the foreground of the report: user churn", "background music vs foreground focus"]},
+        {"id": "u1_1C_heated", "chunk": "a heated debate / argument", "headword": "heated", "pos": "adj", "collocates": ["a heated debate", "a heated argument", "in the heat of the moment"], "extra_contexts": ["a heated Slack thread about the decision", "things got heated at the family dinner"]},
+        {"id": "u1_1C_impression", "chunk": "get the impression that / a vivid impression", "headword": "impression", "pos": "n", "collocates": ["get the impression that", "a first impression", "a vivid impression", "leave someone with the impression"], "extra_contexts": ["I got the distinct impression she was joking", "the demo left a vivid impression on the client"]},
+        {"id": "u1_1C_interpretation", "chunk": "open to interpretation", "headword": "interpretation", "pos": "n", "pattern": "open TO interpretation", "collocates": ["the book's open to interpretation", "your interpretation of the novel", "several possible interpretations"], "family": ["interpret (v)"], "extra_contexts": ["her feedback was open to interpretation", "the contract clause is open to interpretation"]},
+        {"id": "u1_1C_landscape", "chunk": "a beautiful landscape", "headword": "landscape", "pos": "n", "collocates": ["a beautiful landscape", "paint landscapes", "a rocky landscape"], "extra_contexts": ["the media landscape has changed", "the political landscape shifted overnight"]},
+        {"id": "u1_1C_subtle", "chunk": "subtle colours / a subtle shade", "headword": "subtle", "pos": "adj", "collocates": ["subtle colours", "a subtle shade of blue", "subtly different"], "extra_contexts": ["a subtle hint in her message", "the redesign uses subtly different fonts"]},
+        {"id": "u1_1C_underlying", "chunk": "the underlying message / causes", "headword": "underlying", "pos": "adj", "collocates": ["the underlying message of the film", "underlying causes"], "extra_contexts": ["the underlying issue is trust, not process", "the underlying assumption is that users will pay"]},
+        {"id": "u1_1C_visual", "chunk": "visual clues / a visual picture", "headword": "visual", "pos": "adj", "collocates": ["visual clues", "a visual picture"], "family": ["visualize (v)"], "extra_contexts": ["I need visual references before I can build it", "a strong visual identity for the brand"]}
+      ],
+      "extension_chunks": [
+        {"id": "u1_1C_companion", "chunk": "companion pieces / a travel companion", "headword": "companion", "pos": "n"},
+        {"id": "u1_1C_compose", "chunk": "compose music", "headword": "compose", "pos": "v"},
+        {"id": "u1_1C_digest", "chunk": "digest information / hard to digest", "headword": "digest", "pos": "v"},
+        {"id": "u1_1C_disrupt", "chunk": "disrupt a meeting / disruptive", "headword": "disrupt", "pos": "v"},
+        {"id": "u1_1C_domestic", "chunk": "a domestic scene / life", "headword": "domestic", "pos": "adj"},
+        {"id": "u1_1C_maid", "chunk": "worked as a maid", "headword": "maid", "pos": "n"},
+        {"id": "u1_1C_presumably", "chunk": "presumably because", "headword": "presumably", "pos": "adv"}
+      ]
+    }
+  ],
+  "patterns": {
+    "prep_after_adj": {
+      "description": "Adjective + fixed preposition. Common B2 error zone. Learn as a whole chunk, not as 'rule'.",
+      "items": [
+        {"chunk": "addicted TO sth / -ing", "typical_errors": ["addicted on", "addicted with"], "examples": ["addicted to coffee", "addicted to scrolling"]},
+        {"chunk": "reliant ON sth", "typical_errors": ["reliant of", "reliant to"], "examples": ["reliant on subtitles", "heavily reliant on ad revenue"]},
+        {"chunk": "driven BY sth", "typical_errors": ["driven from", "driven of"], "examples": ["driven by curiosity", "driven by market pressure"]},
+        {"chunk": "open TO interpretation", "typical_errors": ["open for", "open on"], "examples": ["the ending is open to interpretation"]},
+        {"chunk": "close TO tears", "typical_errors": ["close from tears", "near of tears"], "examples": ["she was close to tears"]},
+        {"chunk": "disturbed BY / ABOUT / AT sth", "typical_errors": ["disturbed from", "disturbed of"], "examples": ["disturbed by the news", "disturbed about the results"]},
+        {"chunk": "depict sb AS sth", "typical_errors": ["depict like", "depict for"], "examples": ["depicted as a hero"]},
+        {"chunk": "touch ON a subject", "typical_errors": ["touch about", "touch at"], "examples": ["the podcast touched on burnout"]},
+        {"chunk": "revolve AROUND sth", "typical_errors": ["revolve about", "revolve on"], "examples": ["the plot revolves around a heist"]},
+        {"chunk": "sequel TO sth", "typical_errors": ["sequel of", "sequel for"], "examples": ["a sequel to the first film"]},
+        {"chunk": "a sharp satire ON sth", "typical_errors": ["satire about", "satire of"], "examples": ["a sharp satire on hustle culture"]},
+        {"chunk": "in the foreground / background OF sth", "typical_errors": ["on the foreground", "at the background"], "examples": ["in the background of the photo"]}
+      ]
+    },
+    "extreme_adjectives": {
+      "description": "Ungradable adjectives — use really/absolutely, NOT very. TB p.23.",
+      "items": ["hilarious", "astonishing", "dreadful", "gripping", "disturbing", "uplifting", "awful", "incredible", "atmospheric", "weird"],
+      "wrong": ["very hilarious", "very astonishing", "very dreadful"],
+      "right": ["absolutely hilarious", "really astonishing", "absolutely dreadful"]
+    },
+    "habits_grammar": {
+      "description": "Grammar exponents for talking about present and past habits. Taught as chunks, not rules.",
+      "items": [
+        {"chunk": "tend to / tend not to + verb", "examples": ["I tend to watch films on demand", "I tend not to go out during the week"]},
+        {"chunk": "as a rule", "examples": ["No, not as a rule", "As a rule, I don't drink coffee after 5"]},
+        {"chunk": "now and then", "examples": ["I go running now and then"]},
+        {"chunk": "hardly ever", "examples": ["I hardly ever watch sports"]},
+        {"chunk": "used to + verb (past habit no longer true)", "examples": ["I used to be glued to Instagram"]},
+        {"chunk": "would + verb (repeated past action)", "examples": ["We'd binge a whole series in a weekend"]},
+        {"chunk": "all the time", "examples": ["My headphones are glued to my ears all the time"]}
+      ]
+    },
+    "al_suffix": {
+      "description": "Noun → Adjective with -al suffix. From VB p.8 meta-block.",
+      "items": [
+        {"noun": "convention", "adj": "conventional"},
+        {"noun": "accident", "adj": "accidental"},
+        {"noun": "behaviour", "adj": "behavioural"},
+        {"noun": "commerce", "adj": "commercial"},
+        {"noun": "controversy", "adj": "controversial"},
+        {"noun": "exception", "adj": "exceptional"},
+        {"noun": "globe", "adj": "global"},
+        {"noun": "norm", "adj": "normal"},
+        {"noun": "organization", "adj": "organizational"}
+      ]
+    }
+  },
+  "stats": {
+    "core_total": 40,
+    "extension_total": 32,
+    "patterns_prep": 12,
+    "patterns_extreme_adj": 10,
+    "patterns_habits": 7,
+    "patterns_al": 9
+  }
+}
